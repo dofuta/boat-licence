@@ -1,23 +1,15 @@
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
-- 2.3.1
+ - 2.3.1
 
 * System dependencies
-- rails 5.2.1
-
-* Configuration
+ - rails 5.2.1
 
 * Database creation
+  1. `$ rake db:create`
 
 * Database initialization
-1. `$ rake db:create`
-1. `$ rake db:migrate`
+ 1. `$ rake db:migrate`
 
 <br>
 
