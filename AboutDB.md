@@ -5,7 +5,7 @@
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|email |string|null: false, uniquer: true|メールアドレス
+|email |string|null: false, uniquer: true, default: ""|メールアドレス
 |name  |string|index: true               |氏名
 |name_furigana|string|index: true|ふりがな|
 |former_name|string||旧姓|
@@ -26,6 +26,19 @@
 |address2|string||住所2|
 |admin|integer||1 or null 管理者|
 |teacher|integer|| 1 or null 講師|
+|created_at|datetime|
+|updated_at|datetime|
+|__Devise__|
+|encrypted_password|string||deviseに必要|
+|reset_password_token|string||deviseに必要|
+|reset_password_sent_at|datetime||deviseに必要|
+|remember_created_at|datetime||deviseに必要|
+|__Devise Trackable__|
+|sign_in_count|integer| default: 0, null: false|deviseのtrackableオプションに必要|
+|current_sign_in_at|datetime||deviseのtrackableオプションに必要|
+|last_sign_in_at|datetime||deviseのtrackableオプションに必要|
+|current_sign_in_ip|string||deviseのtrackableオプションに必要|
+|last_sign_in_ip|string||deviseのtrackableオプションに必要|
 
 >name, name_furiganaは検索に使用するので、indexを追加
 >emailは一意なものにする
