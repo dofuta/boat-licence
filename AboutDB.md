@@ -92,6 +92,8 @@
 |lesson_id|references|:lesson, null: false, foreign_key: true||
 |payment_confirmation|integer||1 or null 領収|
 |remark|text||備考|
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - belongs_to :user
@@ -171,7 +173,9 @@
 |facility_name|string|null: false, index: true|施設名|
 |address|string|null: false| 住所|
 |map_image|text||地図画像|
-|url|string||url|
+|url|text||url|
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - belongs_to :lesson
