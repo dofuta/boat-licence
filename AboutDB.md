@@ -114,15 +114,15 @@
 |user_id|references|:user, null: false, foreign_key: true||
 |exam_id|references|:exam, null: false, foreign_key: true||
 |payment_confirmation|integer||1 or null 領収|
-|re-exam_by_cancel|integer||1 or null 再試験（キャンセルによるもの）|
-|re-exam_by_fail|integer||1 or null 再試験（不合格によるもの）|
-|shintaikensa|integer||1 or null 身体検査の要不要|
-|syoumeisyo|integer||1 or null 身体検査証明書の有無|
+|re_exam_status|integer||再試験[不合格によるもの: 0, キャンセルによるもの:1]|
+|shintaikensa_status|integer||身体検査の要不要[要:0, 不要:1, 証明書あり:2]|
 |exam_ticket|integer||1 or null 受験票受け渡し|
 |text_book|integer||1 0r null 教材の発送|
 |exam_number|integer||受験番号|
 |pass_or_fail|integer||0 or 1, 合否|
 |remark|text||備考|
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - belongs_to :user
