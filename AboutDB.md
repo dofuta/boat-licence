@@ -5,13 +5,13 @@
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|email |string|null: false, uniquer: true|メールアドレス
-|name  |string|index: true               |氏名
+|email |string|null: false, uniquer: true, default: ""|メールアドレス
+|name  |string|index: true, null: false        |氏名
 |name_furigana|string|index: true|ふりがな|
 |former_name|string||旧姓|
 |former_name_furigana|string||旧姓ふりがな|
-|gender|integer|null: false|男: 0  女:1|
-|birth|date|null: false|生年月日|
+|gender|integer||男: 0  女:1|
+|birth|date||生年月日|
 |nationality|string||国籍|
 |permanent_address |string||本籍地|
 |former_permanent_address|string||旧本籍地|
@@ -20,12 +20,25 @@
 |license_status|integer||1: 一級, 2: 二級, 4: 特殊（合計で表す。6なら、二級と特殊）
 |phone_number|integer|null: false|電話番号1|
 |phone_number2|integer||電話番号2|
-|postal_code|integer|null: false|郵便番号|
-|address|string|null: false|住所|
+|postal_code|integer||郵便番号|
+|address|string||住所|
 |postal_code2|integer||郵便番号2|
 |address2|string||住所2|
 |admin|integer||1 or null 管理者|
 |teacher|integer|| 1 or null 講師|
+|created_at|datetime|
+|updated_at|datetime|
+|__Devise__|
+|encrypted_password|string||deviseに必要|
+|reset_password_token|string||deviseに必要|
+|reset_password_sent_at|datetime||deviseに必要|
+|remember_created_at|datetime||deviseに必要|
+|__Devise Trackable__|
+|sign_in_count|integer| default: 0, null: false|deviseのtrackableオプションに必要|
+|current_sign_in_at|datetime||deviseのtrackableオプションに必要|
+|last_sign_in_at|datetime||deviseのtrackableオプションに必要|
+|current_sign_in_ip|string||deviseのtrackableオプションに必要|
+|last_sign_in_ip|string||deviseのtrackableオプションに必要|
 
 >name, name_furiganaは検索に使用するので、indexを追加
 >emailは一意なものにする
@@ -79,6 +92,8 @@
 |lesson_id|references|:lesson, null: false, foreign_key: true||
 |payment_confirmation|integer||1 or null 領収|
 |remark|text||備考|
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - belongs_to :user
@@ -99,15 +114,15 @@
 |user_id|references|:user, null: false, foreign_key: true||
 |exam_id|references|:exam, null: false, foreign_key: true||
 |payment_confirmation|integer||1 or null 領収|
-|re-exam_by_cancel|integer||1 or null 再試験（キャンセルによるもの）|
-|re-exam_by_fail|integer||1 or null 再試験（不合格によるもの）|
-|shintaikensa|integer||1 or null 身体検査の要不要|
-|syoumeisyo|integer||1 or null 身体検査証明書の有無|
+|re_exam_status|integer||再試験[不合格によるもの: 0, キャンセルによるもの:1]|
+|shintaikensa_status|integer||身体検査の要不要[要:0, 不要:1, 証明書あり:2]|
 |exam_ticket|integer||1 or null 受験票受け渡し|
 |text_book|integer||1 0r null 教材の発送|
 |exam_number|integer||受験番号|
 |pass_or_fail|integer||0 or 1, 合否|
 |remark|text||備考|
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - belongs_to :user
@@ -126,10 +141,12 @@
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
 |user_id|references|:user||
-|lesson_place_id|references|:lesson_place, null: false, foreign_key: true||
+|lesson_place_id|references|:lesson_place, foreign_key: true||
 |type|integer|null: false|実技: 0, 初級: 1, 上級: 2, 特殊: 3|
 |date|date|null: false|日付|
-|gg_event_id|integer||Googleカレンダーのイベントid. GASによってイベントが作成された後、ここにidを保存しておく|
+|gg_event_id|text||Googleカレンダーのイベントid. GASによってイベントが作成された後、ここにidを保存しておく|
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - has_many :user_owned_lessons
@@ -142,10 +159,7 @@
 > lesson_placeを１つ持つ
 
 - has_many :users, through: :user_teaching_lessons
-> teacherを複数持つ
-
-- has_many :users, through: :user_teaching_lessons
-> teacherを通してuserを複数持つ
+> user_teaching_lessonを通してuserを複数持つ
 
 <br>
 <br>
@@ -158,7 +172,9 @@
 |facility_name|string|null: false, index: true|施設名|
 |address|string|null: false| 住所|
 |map_image|text||地図画像|
-|url|string||url|
+|url|text||url|
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - belongs_to :lesson
@@ -172,11 +188,11 @@
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|exam_place_id|references|:exam_place, null: false, foreign_key: true|
+|exam_place_id|references|:exam_place, foreign_key: true|
 |date|date|null: false|日付|
 |type|integer|null: false|一二級: 0, 特殊: 1|
 |announcement_date|date|null: false|合格発表日|
-|gg_event_id|integer||GoogleカレンダーのイベントID|
+|gg_event_id|text||GoogleカレンダーのイベントID|
 
 #### Association
 - has_many :user_owned_exams
@@ -199,7 +215,9 @@
 |facility_name|string|null: false|施設名|
 |address|string|null: false|住所|
 |map_image|text||地図画像|
-|url|string||url|
+|url|text||url|
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - belongs_to :exam
@@ -214,7 +232,9 @@
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
 |user_id|references|:user, null: false, foreign_key: true||
-|lesson_id|references|:user, null: false, foreign_key: true|||
+|lesson_id|references|:lesson, null: false, foreign_key: true|||
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - belongs_to :user
@@ -233,6 +253,8 @@
 |------|----  |-------                   |------       |
 |user_id|references|:user, null: false, foreign_key: true||
 |date|date|null: false|日付|
+|created_at|datetime|
+|updated_at|datetime|
 
 
 #### Association
