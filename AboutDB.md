@@ -256,6 +256,8 @@
 |------|----  |-------                   |------       |
 |user_id|references|:user, null: false, foreign_key: true||
 |date|date|null: false|日付|
+|created_at|datetime|
+|updated_at|datetime|
 
 
 #### Association

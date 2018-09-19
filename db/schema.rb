@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_19_043818) do
+ActiveRecord::Schema.define(version: 2018_09_19_044107) do
 
   create_table "exam_places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name", null: false
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 2018_09_19_043818) do
     t.integer "friend_user_id"
     t.index ["friend_user_id", "user_id"], name: "index_friendships_on_friend_user_id_and_user_id", unique: true
     t.index ["user_id", "friend_user_id"], name: "index_friendships_on_user_id_and_friend_user_id", unique: true
+  end
+
+  create_table "holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_holidays_on_user_id"
   end
 
   create_table "lesson_places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
