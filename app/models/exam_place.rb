@@ -1,0 +1,2 @@
+class ExamPlace < ApplicationRecord
+end

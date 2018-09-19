@@ -218,7 +218,9 @@
 |facility_name|string|null: false|施設名|
 |address|string|null: false|住所|
 |map_image|text||地図画像|
-|url|string||url|
+|url|text||url|
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - belongs_to :exam
