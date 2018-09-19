@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_19_100302) do
+ActiveRecord::Schema.define(version: 2018_09_19_105858) do
 
   create_table "exams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "date", null: false
@@ -59,6 +59,18 @@ ActiveRecord::Schema.define(version: 2018_09_19_100302) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rx_lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "place_id"
+    t.integer "type", null: false
+    t.datetime "datetime", null: false
+    t.text "gg_event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_rx_lessons_on_place_id"
+    t.index ["user_id"], name: "index_rx_lessons_on_user_id"
+  end
+
   create_table "user_owned_exams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "exam_id", null: false
@@ -85,6 +97,20 @@ ActiveRecord::Schema.define(version: 2018_09_19_100302) do
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_user_owned_lessons_on_lesson_id"
     t.index ["user_id"], name: "index_user_owned_lessons_on_user_id"
+  end
+
+  create_table "user_owned_rx_lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "rx_lesson_id", null: false
+    t.integer "renewal_or_expiration", null: false
+    t.integer "payment_confirmation"
+    t.integer "shintaikensa_status"
+    t.integer "reservation_number"
+    t.text "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rx_lesson_id"], name: "index_user_owned_rx_lessons_on_rx_lesson_id"
+    t.index ["user_id"], name: "index_user_owned_rx_lessons_on_user_id"
   end
 
   create_table "user_teaching_lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

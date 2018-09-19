@@ -50,6 +50,9 @@
 - has_many :user_owned_exams, dependent: :destroy
 > user_owned_examを所有する。
 
+- has_many :user_owned_rx_lessons, dependent: :destroy
+> user_owned_rx_lessonを所有する
+
 - has_many :user_teaching_lessons, dependent: :destroy
 > user_teaching_lessonを所有する。
 
@@ -59,11 +62,14 @@
 - has_many :taken_exams, through: :user_owned_exams, source: :exam
 > examをtaken_examとして、user_owned_examを通じて多数所有する。
 
+- has_many :taken_rx_lessons, through: :user_owned_rx_lessons, source: :rx_lesson
+> rx_lessonをtaken_rx_lessonsとして、user_owned_rx_lessonを通じて多数所有する。
+
 - has_many :teaching_lessons, through: :user_teaching_lessons, source: :lesson
 > lessonをteaching_lessonとして、user_teaching_lessonを通じて多数所有する。
 
 - has_many :holidays, dependent: :destroy
-> holidayを所有する
+> holidayを所有する。
 
 - has_and_belongs_to_many :friendships, class_name: “User”, join_table: :friendships, foreign_key: :user_id, association_foreign_key: :friend_user_id
 > 友達をユーザーモデル内で定義（friendshipsテーブル（モデルなし）を別途作成、利用）
@@ -105,7 +111,6 @@
 <br>
 <br>
 
-
 ## user_owned_exams tabel
 > ユーザー固有の試験情報を保存するuser_owned_examモデルと結びつく
 
@@ -134,79 +139,27 @@
 <br>
 <br>
 
-
-## lessons table
-> 各講習を保存するlessonモデルと結びつく
+## user_owned_rx_lessons table
+> ユーザー固有の講習情報を保存するuser_owned_rx_lessonモデルと結びつく
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|user_id|references|:user||
-|place_id|references|:place, foreign_key: true||
-|type|integer|null: false|実技: 0, 初級: 1, 上級: 2, 特殊: 3|
-|date|date|null: false|日付|
-|gg_event_id|text||Googleカレンダーのイベントid. GASによってイベントが作成された後、ここにidを保存しておく|
+|user_id|references|:user, null: false, foreign_key true||
+|rx_lesson_id|references|:rx_lesson, null: false, foreign_key: true||
+|renewal_or_expiration|integer|null: false|更新:0, 失効:1|
+|payment_confirmation|integer||1 or null 領収|
+|shintaikensa_status|integer||身体検査の要不要[要:0, 不要:1, 証明書あり:2]|
+|reservation_number|integer||予約番号|
+|remark|text||備考|
 |created_at|datetime|
 |updated_at|datetime|
 
 #### Association
-- has_many :user_owned_lessons
-> user_owned_lessonを複数持つ
+- belongs_to :user
+> userに従属
 
-- has_many :users, through: :user_owned_lessons
-> user_owned_lessonを通してuserを複数持つ
-
-- has_one :lesson_place
-> lesson_placeを１つ持つ
-
-- has_many :users, through: :user_teaching_lessons
-> user_teaching_lessonを通してuserを複数持つ
-
-<br>
-<br>
-
-
-## exams table
-> 試験日程を保存するexamモデルと結びつく
-
-|Column|Type  |Options                   |Remark       |
-|------|----  |-------                   |------       |
-|place_id|references|:place, foreign_key: true|
-|date|date|null: false|日付|
-|type|integer|null: false|一二級: 0, 特殊: 1|
-|announcement_date|date|null: false|合格発表日|
-|gg_event_id|text||GoogleカレンダーのイベントID|
-
-#### Association
-- has_many :user_owned_exams
-> user_owned_examを複数持つ
-
-- has_many :users, through: :user_owned_exams
-> userを通じてuser_owned_examを複数持つ
-
-- has_one :exam_place
-> exam_placeを１つ持つ
-
-<br>
-<br>
-
-## places table
-> placeモデルと結びつく
-
-|Column|Type  |Options                   |Remark       |
-|------|----  |-------                   |------       |
-|facility_name|string|null: false|施設名|
-|address|string|null: false|住所|
-|map_image|text||地図画像|
-|url|text||url|
-|created_at|datetime|
-|updated_at|datetime|
-
-#### Association
-- has_many :exams
-> examを所有する
-
-- has_many :lessons
-> lessonを所有する
+- belongs_to :rx_lesson
+> rx_lessonに従属
 
 <br>
 <br>
@@ -230,6 +183,111 @@
 
 <br>
 <br>
+
+## lessons table
+> 各講習を保存するlessonモデルと結びつく
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|user_id|references|:user, foreign_key: true||
+|place_id|references|:place, foreign_key: true||
+|type|integer|null: false|実技: 0, 初級: 1, 上級: 2, 特殊: 3|
+|date|date|null: false|日付|
+|gg_event_id|text||Googleカレンダーのイベントid. GASによってイベントが作成された後、ここにidを保存しておく|
+|created_at|datetime|
+|updated_at|datetime|
+
+#### Association
+- has_many :user_owned_lessons
+> user_owned_lessonを複数持つ
+
+- has_many :users, through: :user_owned_lessons
+> user_owned_lessonを通してuserを複数持つ
+
+- belongs_to :place
+> lesson_placeを１つ持つ
+
+- has_many :users, through: :user_teaching_lessons
+> user_teaching_lessonを通してuserを複数持つ
+
+<br>
+<br>
+
+## exams table
+> 試験日程を保存するexamモデルと結びつく
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|place_id|references|:place, foreign_key: true|
+|date|date|null: false|日付|
+|type|integer|null: false|一二級: 0, 特殊: 1|
+|announcement_date|date|null: false|合格発表日|
+|gg_event_id|text||GoogleカレンダーのイベントID|
+
+#### Association
+- has_many :user_owned_exams
+> user_owned_examを複数持つ
+
+- has_many :users, through: :user_owned_exams
+> userを通じてuser_owned_examを複数持つ
+
+- belongs_to :place
+> placeに従属する
+
+<br>
+<br>
+
+## rx_lessons table
+> 各更新・失効講習を保存するrx_lessonモデルと結びつく
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|user_id|references|:user, foreign_key: true||
+|place_id|references|:place, foreign_key: true||
+|type|integer|null: false|更新: 0, 失効: 1|
+|datetime|datetime|null: false|日時|
+|gg_event_id|text||Googleカレンダーのイベントid. GASによってイベントが作成された後、ここにidを保存しておく|
+|created_at|datetime|
+|updated_at|datetime|
+
+#### Association
+- has_many :user_owend_rx_lessons
+> user_owned_rx_lessonsを複数持つ
+
+- has_many :users, through: :user_owned_rx_lessons
+> user_owned_rx_lessonを通してuserを複数持つ
+
+- belongs_to :place
+> placeに従属する
+
+<br>
+<br>
+
+## places table
+> placeモデルと結びつく
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|facility_name|string|null: false|施設名|
+|address|string|null: false|住所|
+|map_image|text||地図画像|
+|url|text||url|
+|created_at|datetime|
+|updated_at|datetime|
+
+#### Association
+- has_many :exams
+> examを所有する
+
+- has_many :lessons
+> lessonを所有する
+
+- has_many :rx_lessons
+> rx_lessonを所有する
+
+<br>
+<br>
+
 
 ## holidays table
 > holidayモデルと結びつく。holidayモデルは、講師の休みの日を保存するモデル。
