@@ -235,7 +235,9 @@
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
 |user_id|references|:user, null: false, foreign_key: true||
-|lesson_id|references|:user, null: false, foreign_key: true|||
+|lesson_id|references|:lesson, null: false, foreign_key: true|||
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - belongs_to :user
