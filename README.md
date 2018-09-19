@@ -1,15 +1,6 @@
 # README
-* Ruby version
- - 2.3.1
-
-* System dependencies
+ - Ruby 2.3.1
  - rails 5.2.1
-
-* Database creation
-  1. `$ rake db:create`
-
-* Database initialization
- 1. `$ rake db:migrate`
 
 <br>
 
