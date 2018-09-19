@@ -159,10 +159,7 @@
 > lesson_placeを１つ持つ
 
 - has_many :users, through: :user_teaching_lessons
-> teacherを複数持つ
-
-- has_many :users, through: :user_teaching_lessons
-> teacherを通してuserを複数持つ
+> user_teaching_lessonを通してuserを複数持つ
 
 <br>
 <br>
