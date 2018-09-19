@@ -10,26 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_19_044107) do
-
-  create_table "exam_places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "facility_name", null: false
-    t.string "address", null: false
-    t.text "map_image"
-    t.text "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2018_09_19_100302) do
 
   create_table "exams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "exam_place_id"
     t.date "date", null: false
     t.integer "type", null: false
     t.date "announcement_date"
     t.text "gg_event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exam_place_id"], name: "index_exams_on_exam_place_id"
+    t.bigint "place_id"
+    t.index ["place_id"], name: "index_exams_on_place_id"
   end
 
   create_table "friendships", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -47,26 +38,25 @@ ActiveRecord::Schema.define(version: 2018_09_19_044107) do
     t.index ["user_id"], name: "index_holidays_on_user_id"
   end
 
-  create_table "lesson_places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "type", null: false
+    t.date "date", null: false
+    t.text "gg_event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "place_id"
+    t.index ["place_id"], name: "index_lessons_on_place_id"
+    t.index ["user_id"], name: "index_lessons_on_user_id"
+  end
+
+  create_table "places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name", null: false
     t.string "address", null: false
     t.text "map_image"
     t.text "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["facility_name"], name: "index_lesson_places_on_facility_name"
-  end
-
-  create_table "lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "lesson_place_id"
-    t.integer "type", null: false
-    t.date "date", null: false
-    t.text "gg_event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["lesson_place_id"], name: "index_lessons_on_lesson_place_id"
-    t.index ["user_id"], name: "index_lessons_on_user_id"
   end
 
   create_table "user_owned_exams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -145,4 +135,6 @@ ActiveRecord::Schema.define(version: 2018_09_19_044107) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "exams", "places"
+  add_foreign_key "lessons", "places"
 end

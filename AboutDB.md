@@ -141,7 +141,7 @@
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
 |user_id|references|:user||
-|lesson_place_id|references|:lesson_place, foreign_key: true||
+|place_id|references|:place, foreign_key: true||
 |type|integer|null: false|実技: 0, 初級: 1, 上級: 2, 特殊: 3|
 |date|date|null: false|日付|
 |gg_event_id|text||Googleカレンダーのイベントid. GASによってイベントが作成された後、ここにidを保存しておく|
@@ -164,31 +164,13 @@
 <br>
 <br>
 
-## lesson_places table
-> lesson_placeモデルと結びつく
-
-|Column|Type  |Options                   |Remark       |
-|------|----  |-------                   |------       |
-|facility_name|string|null: false, index: true|施設名|
-|address|string|null: false| 住所|
-|map_image|text||地図画像|
-|url|text||url|
-|created_at|datetime|
-|updated_at|datetime|
-
-#### Association
-- belongs_to :lesson
-> lessonに従属する
-
-<br>
-<br>
 
 ## exams table
 > 試験日程を保存するexamモデルと結びつく
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|exam_place_id|references|:exam_place, foreign_key: true|
+|place_id|references|:place, foreign_key: true|
 |date|date|null: false|日付|
 |type|integer|null: false|一二級: 0, 特殊: 1|
 |announcement_date|date|null: false|合格発表日|
@@ -207,8 +189,8 @@
 <br>
 <br>
 
-## exam_places table
-> exam_placeモデルと結びつく
+## places table
+> placeモデルと結びつく
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
@@ -220,8 +202,11 @@
 |updated_at|datetime|
 
 #### Association
-- belongs_to :exam
-> examに従属する
+- has_many :exams
+> examを所有する
+
+- has_many :lessons
+> lessonを所有する
 
 <br>
 <br>
