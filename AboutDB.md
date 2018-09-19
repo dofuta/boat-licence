@@ -98,8 +98,8 @@
 |------|----  |-------                   |------       |
 |user_id|references|:user, null: false, foreign_key: true||
 |exam_id|references|:exam, null: false, foreign_key: true||
-|payment_confirmation|integer||未収: null, 領収: 1|
-|re-exam_by_cancel|integer|| 1 or null 再試験（キャンセルによるもの）|
+|payment_confirmation|integer||1 or null 領収|
+|re-exam_by_cancel|integer||1 or null 再試験（キャンセルによるもの）|
 |re-exam_by_fail|integer||1 or null 再試験（不合格によるもの）|
 |shintaikensa|integer||1 or null 身体検査の要不要|
 |syoumeisyo|integer||1 or null 身体検査証明書の有無|
@@ -182,7 +182,7 @@
 - has_many :user_owned_exams
 > user_owned_examを複数持つ
 
-- has_many :users, through: :user_owned_exam
+- has_many :users, through: :user_owned_exams
 > userを通じてuser_owned_examを複数持つ
 
 - has_one :exam_place
