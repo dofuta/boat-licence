@@ -1,0 +1,2 @@
+class UserOwnedLesson < ApplicationRecord
+end
