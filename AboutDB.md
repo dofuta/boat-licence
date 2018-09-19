@@ -191,11 +191,11 @@
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|exam_place_id|references|:exam_place, null: false, foreign_key: true|
+|exam_place_id|references|:exam_place, foreign_key: true|
 |date|date|null: false|日付|
 |type|integer|null: false|一二級: 0, 特殊: 1|
 |announcement_date|date|null: false|合格発表日|
-|gg_event_id|integer||GoogleカレンダーのイベントID|
+|gg_event_id|text||GoogleカレンダーのイベントID|
 
 #### Association
 - has_many :user_owned_exams
