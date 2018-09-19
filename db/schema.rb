@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_19_023915) do
+ActiveRecord::Schema.define(version: 2018_09_19_030455) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,7 +25,29 @@ ActiveRecord::Schema.define(version: 2018_09_19_023915) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "name_furigana"
+    t.string "former_name"
+    t.string "former_name_furigana"
+    t.integer "gender"
+    t.date "birth"
+    t.string "nationality"
+    t.string "permanent_address"
+    t.string "former_permanent_address"
+    t.integer "license_number"
+    t.date "license_expiration_date"
+    t.integer "license_status"
+    t.integer "phone_number"
+    t.integer "phone_number2"
+    t.integer "postal_code"
+    t.string "address"
+    t.integer "postal_code2"
+    t.string "address2"
+    t.integer "admin"
+    t.integer "teacher"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name"
+    t.index ["name_furigana"], name: "index_users_on_name_furigana"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

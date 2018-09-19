@@ -6,12 +6,12 @@
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
 |email |string|null: false, uniquer: true, default: ""|メールアドレス
-|name  |string|index: true               |氏名
+|name  |string|index: true, null: false        |氏名
 |name_furigana|string|index: true|ふりがな|
 |former_name|string||旧姓|
 |former_name_furigana|string||旧姓ふりがな|
-|gender|integer|null: false|男: 0  女:1|
-|birth|date|null: false|生年月日|
+|gender|integer||男: 0  女:1|
+|birth|date||生年月日|
 |nationality|string||国籍|
 |permanent_address |string||本籍地|
 |former_permanent_address|string||旧本籍地|
@@ -20,8 +20,8 @@
 |license_status|integer||1: 一級, 2: 二級, 4: 特殊（合計で表す。6なら、二級と特殊）
 |phone_number|integer|null: false|電話番号1|
 |phone_number2|integer||電話番号2|
-|postal_code|integer|null: false|郵便番号|
-|address|string|null: false|住所|
+|postal_code|integer||郵便番号|
+|address|string||住所|
 |postal_code2|integer||郵便番号2|
 |address2|string||住所2|
 |admin|integer||1 or null 管理者|
