@@ -144,7 +144,9 @@
 |lesson_place_id|references|:lesson_place, null: false, foreign_key: true||
 |type|integer|null: false|実技: 0, 初級: 1, 上級: 2, 特殊: 3|
 |date|date|null: false|日付|
-|gg_event_id|integer||Googleカレンダーのイベントid. GASによってイベントが作成された後、ここにidを保存しておく|
+|gg_event_id|text||Googleカレンダーのイベントid. GASによってイベントが作成された後、ここにidを保存しておく|
+|created_at|datetime|
+|updated_at|datetime|
 
 #### Association
 - has_many :user_owned_lessons
