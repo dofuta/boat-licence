@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LessonPlaceTest < ActiveSupport::TestCase
+class RxLessonTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

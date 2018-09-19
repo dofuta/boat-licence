@@ -1,6 +1,6 @@
-class CreateExamPlaces < ActiveRecord::Migration[5.2]
+class CreatePlaces < ActiveRecord::Migration[5.2]
   def change
-    create_table :exam_places do |t|
+    create_table :places do |t|
       t.string :facility_name, null: false
       t.string :address,       null: false
       t.text   :map_image
