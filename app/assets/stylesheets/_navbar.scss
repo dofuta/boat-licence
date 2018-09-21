@@ -1,0 +1,49 @@
+.Navbar{
+  &__Info{
+
+  }
+  &__Each{
+    padding: 10px;
+
+    &Kojin{
+      width:  200px;
+      height: 100px;
+    }
+    &Calendar{
+      width:  200px;
+      height: 100px;
+    }
+    &LessonSyokyuu{
+      width:  200px;
+      height: 100px;
+    }
+    &LessonJoukyuu{
+      width:  200px;
+      height: 100px;
+    }
+    &LessonJitugi{
+      width:  200px;
+      height: 100px;
+    }
+    &LessonTokusyu{
+      width:  200px;
+      height: 100px;
+    }
+    &Exam12kyuu{
+      width:  200px;
+      height: 100px;
+    }
+    &ExamTokusyu{
+      width:  200px;
+      height: 100px;
+    }
+    &RxLessonKousin{
+      width:  200px;
+      height: 100px;
+    }
+    &RxLessonSikkou{
+      width:  200px;
+      height: 100px;
+    }
+  }
+}
