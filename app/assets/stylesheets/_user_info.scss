@@ -1,0 +1,142 @@
+.UserInfo{
+  font-size: 24px;
+  height: 900px;
+  &__Group1{
+    width: 80vw;
+    height: 150px;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    background-color: $yellow1;
+    &__Info1{
+      float: left;
+      width: 20%;
+      &Kanji{
+        width: 200px;
+        p{
+          font-size: $setumeifont;
+          padding: 10px;
+          color: $gray3;;
+        }
+      }
+      &Furigana{
+        width: 200px;
+        p{
+          font-size: $setumeifont;
+          padding: 10px;
+          color: $gray3;
+        }
+      }
+      &FormerKanji{
+
+      }
+      &FormerFurigana{
+
+      }
+    }
+    &__Info2{
+      float: left;
+      &Gender{
+
+      }
+      &Birth{
+
+      }
+    }
+    &__Info3{
+      float: left;
+      &Nationality{
+
+      }
+    }
+    &__Info4{
+      float: left;
+      &LicenseStatus{
+
+      }
+      &LicenseNumber{
+
+      }
+      &LicenseExpiration{
+
+      }
+    }
+    &__Info5{
+      float: left;
+      &Remark{
+
+      }
+    }
+  }
+  &__Group2{
+    width: 80vw;
+    height: 250px;
+    margin: 0 auto;
+    background-color: $gray1;
+    &__Info1{
+      background-color: $gray1;
+      height: 60px;
+      &PhoneNumber{
+        float: left;
+      }
+      &PhoneNumber2{
+        float: left;
+      }
+      &Email{
+        float: left;
+      }
+    }
+    &__Info2{
+      background-color: $gray2;
+      height: 60px;
+      clear: both;
+      &PermanentAddress{
+        float: left;
+      }
+      &FormerPermanentAddress{
+        float: left;
+        margin-left: 20px;
+      }
+    }
+    &__Info3{
+      float: left;
+      height: 80px;
+      width: 50%;
+      border-radius: 5px;
+      background-color: $green1;
+      &PostalCode{
+
+      }
+      &Address{
+
+      }
+    }
+    &__Info4{
+      float: left;
+      height: 80px;
+      width: 50%;
+      border-radius: 5px;
+      background-color: $green2;
+      &PostalCode2{
+
+      }
+      &Address2{
+
+      }
+    }
+  }
+  &__Group3{
+    width: 80vw;
+    height: 50px;
+    margin: 0 auto;
+    background-color: $gray4;
+    &__Info1{
+      &Admin{
+
+      }
+      &Teacher{
+
+      }
+    }
+  }
+}
