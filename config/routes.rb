@@ -6,4 +6,5 @@ Rails.application.routes.draw do
        get :search
     end
   end
+  resources :places, only: [:index, :create, :edit, :update, :destroy]
 end

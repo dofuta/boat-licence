@@ -1,0 +1,78 @@
+.Place{
+  margin: 20px auto;
+  border-radius: 15px;
+  height: 138px;
+  width: 850px;
+  background-color: $gray1;
+  font-size: 24px;
+  color: $gray4;
+  label{
+    @extend %label_base;
+    padding-top: 5px;
+  }
+  &__Group1{
+    overflow: auto;
+    padding-left: 10px;
+    &FacilityName{
+      width: 400px;
+      float: left;
+    }
+    &MapImage{
+      width: 400px;
+      float: left;
+    }
+  }
+  &__Group2{
+    overflow: auto;
+    clear: both;
+    padding-left: 10px;
+    &Address{
+      width: 400px;
+      float: left;
+    }
+    &Url{
+      width: 400px;
+      float: left;
+    }
+  }
+  &__Update{
+    float: left;
+    a{
+      height: 30px;
+      width: 425px;
+      border-bottom-left-radius: 15px;
+      margin-left: 0px;
+      background-color: $lightblue1;
+      color: white;
+      font-size: 20px;
+      text-decoration: none;
+      // 中身の要素縦方向中央寄せ
+      display: flex;
+      align-items: center;
+      // 中身の要素横方向中央寄せ
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  &__Delete{
+    float: left;
+    a{
+      height: 30px;
+      width: 425px;
+      border-bottom-right-radius: 15px;
+      margin-left: 0px;
+      background-color: $red2;
+      color: white;
+      font-size: 20px;
+      text-decoration: none;
+      // 中身の要素縦方向中央寄せ
+      display: flex;
+      align-items: center;
+      // 中身の要素横方向中央寄せ
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}

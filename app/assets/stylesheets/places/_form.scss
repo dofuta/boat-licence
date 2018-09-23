@@ -1,0 +1,80 @@
+.PlaceIndex{
+  &__Form{
+    padding-top: 20px;
+    margin: 0 auto;
+    border-radius: 15px;
+    width: 850px;
+    background-color: $gray1;
+    label{
+      display: block;
+      padding-bottom: 10px;
+      padding-left: 5px;
+      color: $gray3;
+      font-size: 20px;
+    }
+    &Group1{
+      overflow: auto;
+      &__FacilityName{
+        float: left;
+        padding-left: 10px;
+        input{
+          @extend %field_base;
+          width: 400px;
+        }
+      }
+      &__MapImage{
+        float: left;
+        padding-left: 10px;
+      }
+    }
+    &Group2{
+      clear: both;
+      overflow: auto;
+      padding: 10px 0;
+      &__Address{
+        float: left;
+        padding-left: 10px;
+        textarea{
+          @extend %field_base;
+          border-width: 2px;
+          height: 60px;
+          width: 400px;
+          font-size: 24px;
+        }
+      }
+      &__Url{
+        float: left;
+        padding-left: 10px;
+        input{
+          @extend %field_base;
+          width: 400px;
+          font-size: 24px;
+        }
+      }
+    }
+    &Submit{
+      input{
+        height: 60px;
+        width: 850px;
+        border-radius: 15px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-left: 0px;
+        background-color: $lightblue1;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        // 中身の要素縦方向中央寄せ
+        display: flex;
+        align-items: center;
+        // 中身の要素横方向中央寄せ
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+  &List{
+
+  }
+}
