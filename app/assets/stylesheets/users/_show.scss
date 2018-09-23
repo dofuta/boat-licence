@@ -1,0 +1,261 @@
+%GroupBase{
+  overflow: auto;
+  margin: 0 auto;
+  width: 1264px;
+}
+
+
+.UserInfo{
+  font-size: 24px;
+  height: 900px;
+  input{
+    border-radius: 15px;
+    border: none;
+    padding: 3px;
+    font-size: 24px;
+  }
+  textarea{
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+  }
+  select{
+    font-size: 24px;
+  }
+  &__Group1{
+    @extend %GroupBase;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: $gray1;
+    &__Info1{
+      float: left;
+      width: 250px;
+      label{
+        display: block;
+        padding: 10px 0;
+        font-size: 20px;
+        color: $gray3;;
+      }
+      &Kanji{
+        padding-left: 10px;
+        width: 230px;
+      }
+      &Furigana{
+        padding-left: 10px;
+        width: 230px;
+      }
+      &FormerKanji{
+
+      }
+      &FormerFurigana{
+
+      }
+    }
+    &__Info2{
+      float: left;
+      height: 158px;
+      padding: 0 10px;
+      label{
+        font-size: 20px;
+        margin: 10px;
+        color: $gray3;;
+      }
+      &Gender{
+        float: left;
+        margin-top: 40px;
+        display: block;
+        width: 180px;
+        &Male{
+
+        }
+        &Female{
+
+        }
+      }
+      &Nationality{
+        padding-right: 10px;
+        padding-top: 31px;
+        float: left;
+        label{
+          padding-top: 10px;
+        }
+        &Form{
+          width: 100px;
+        }
+      }
+      &Birth{
+        clear: both;
+        padding-top: 5px;
+        label{
+          display: block;
+        }
+        &Select{
+          padding: 1px;
+        }
+      }
+    }
+    &__Info3{
+      float: left;
+      border-top-right-radius: 15px;
+      height: 158px;
+      width: 630px;
+      background-color: $green1;
+      label{
+        display: block;
+        font-size: 20px;
+        padding: 10px 0;
+        color: $gray3;
+      }
+      &LicenseStatus{
+        float: left;
+        padding-left: 10px;
+      }
+      &LicenseExpiration{
+        float: left;
+        padding-left: 10px;
+      }
+      &LicenseNumber{
+        clear: both;
+        padding-left: 10px;
+      }
+    }
+  }
+  &__Group2{
+    @extend %GroupBase;
+    background-color: $gray2;
+    label{
+      font-size: 20px;
+      display: block;
+      padding: 10px 0;
+      color: $gray3;
+    }
+    &__Info1{
+      overflow: auto;
+      padding-bottom: 10px;
+      &PhoneNumber{
+        float: left;
+        padding-left: 10px;
+        input{
+          width: 200px;
+        }
+      }
+      &PhoneNumber2{
+        float: left;
+        padding-left: 10px;
+        input{
+          width: 200px;
+        }
+      }
+      &Email{
+        float: left;
+        padding-left: 10px;
+        input{
+          width: 400px;
+        }
+      }
+    }
+    &__Info2{
+      float: left;
+      width: 33.3%;
+      padding-bottom: 10px;
+      clear: both;
+      &PostalCode{
+        float: left;
+        padding-left: 10px;
+        input{
+          width: 120px;
+        }
+      }
+      &PermanentAddress{
+        float: left;
+        padding-left: 10px;
+        input{
+          width: 100px;
+        }
+      }
+      &FormerPermanentAddress{
+        float: left;
+        padding-left: 10px;
+        input{
+          width: 100px;
+        }
+      }
+      &Address{
+        clear: both;
+        padding-left: 10px;
+        textarea{
+          height: 60px;
+          width: 400px;
+          font-size: 20px;
+        }
+      }
+    }
+    &__Info3{
+      float: left;
+      width: 33.3%;
+      border-radius: 5px;
+      padding-bottom: 10px;
+      &PostalCode2{
+        padding-left: 10px;
+        input{
+          width: 120px;
+        }
+      }
+      &Address2{
+        padding-left: 10px;
+        textarea{
+          height: 60px;
+          width: 400px;
+          font-size: 20px;
+        }
+      }
+    }
+    &__Info4{
+      float: left;
+      width: 33.3%;
+      &Remark{
+        padding-left: 10px;
+        padding-bottom: 10px;
+        textarea{
+          width: 380px;
+          height: 134px;
+        }
+      }
+    }
+  }
+  &__Group3{
+    @extend %GroupBase;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: $gray1;
+    &__Info1{
+      &Admin{
+
+      }
+      &Teacher{
+
+      }
+    }
+    &__Info2{
+      &Submit{
+        input{
+          height: 60px;
+          width: 1264px;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          margin-left: 0px;
+          background-color: $lightblue1;
+          color: white;
+          font-size: 20px;
+          font-weight: bold;
+          // 中身の要素縦方向中央寄せ
+          display: flex;
+          align-items: center;
+          // 中身の要素横方向中央寄せ
+          justify-content: center;
+          border: none;
+        }
+      }
+    }
+  }
+}

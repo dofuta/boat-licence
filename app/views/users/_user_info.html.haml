@@ -1,62 +1,82 @@
 .UserInfo
-  .UserInfo__Group1
-    .UserInfo__Group1__Info1
-      .UserInfo__Group1__Info1Kanji
-        %p 氏名
-        山田太郎
-      .UserInfo__Group1__Info1Furigana
-        %p フリガナ
-        やまだたろう
-      -# .UserInfo__Group1__Info1FormerKanji
-      -#   田中太郎
-      -# .UserInfo__Group1__Info1FormerFurigana
-      -#   たなかたろう
-    .UserInfo__Group1__Info2
-      .UserInfo__Group1__Info2Gender
-        男
-      .UserInfo__Group1__Info2Birth
-        1990/3/2
-    .UserInfo__Group1__Info3
-      .UserInfo__Group1__Info3Nationality
-        韓国
-    .UserInfo__Group1__Info4
-      .UserInfo__Group1__Info4LIcenseStatus
-        特殊
-      .UserInfo__Group1__Info4LicenseNumber
-        1234567890
-      .UserInfo__Group1__Info4LicenseExpiration
-        2023/5/6
-    .UserInfo__Group1__Info5
-      .UserInfo__Group1__Info5Remark
-        こんにちは、初めまして
-  .UserInfo__Group2
-    .UserInfo__Group2__Info1
-      .UserInfo__Group2__Info1PhoneNumber
-        %p 電話番号
-        00000000000
-      .UserInfo__Group2__Info1PhoneNumber2
-        %p 電話番号2
-        00000000000
-      .UserInfo__Group2__Info1Email
-        yamadatarou@test.com
-    .UserInfo__Group2__Info2
-      .UserInfo__Group2__Info2PermanentAddress
-        東京
-      .UserInfo__Group2__Info2FormerPermanentAddress
-        山梨
-    .UserInfo__Group2__Info3
-      .UserInfo__Group2__Info3PostalCode
-        1230000
-      .UserInfo__Group2__Info3Address
-        東京都千代田区〇〇町0-0-0
-    .UserInfo__Group2__Info4
-      .UserInfo__Group2__Info4PostalCode2
-        1230001
-      .UserInfo__Group2__Info4Address2
-        山梨県〇〇市〇〇町0-0-0
-  .UserInfo__Group3
-    .UserInfo__Group3__Info1
-      .UserInfo__Group3__Info1Admin
-        1
-      .UserInfo__Group3__Info1Teacher
-        1
+  =form_with(model: @user, url: user_path, method: :patch, id: "user-update-form") do |f|
+    .UserInfo__Group1
+      .UserInfo__Group1__Info1
+        .UserInfo__Group1__Info1Kanji
+          =f.label :name, "氏名"
+          =f.text_field :name
+        .UserInfo__Group1__Info1Furigana
+          =f.label :name_furigana, "フリガナ"
+          =f.text_field :name_furigana
+        -# .UserInfo__Group1__Info1FormerKanji
+        -#   田中太郎
+        -# .UserInfo__Group1__Info1FormerFurigana
+        -#   たなかたろう
+      .UserInfo__Group1__Info2
+        .UserInfo__Group1__Info2Gender
+          =f.label :gender, "男", class: "UserInfo__Group1__Info2GenderMale"
+          =f.radio_button :gender, 0
+          =f.label :gender, "女", class: "UserInfo__Group1__Info2GenderFemale"
+          =f.radio_button :gender, 1
+        .UserInfo__Group1__Info2Nationality
+          =f.label :nationality, "国籍"
+          =f.text_field :nationality, class: "UserInfo__Group1__Info2NationalityForm"
+        .UserInfo__Group1__Info2Birth
+          =f.label :birth, "生年月日"
+          .UserInfo__Group1__Info2BirthSelect
+            =date_select_ja(f.date_select :birth)
+      .UserInfo__Group1__Info3
+        .UserInfo__Group1__Info3LicenseStatus
+          =f.label :license_status, "免許種別"
+          =f.text_field :license_status
+        .UserInfo__Group1__Info3LicenseExpiration
+          =f.label :license_expiration_date, "有効期限"
+          =date_select_ja(f.date_select :license_expiration_date)
+        .UserInfo__Group1__Info3LicenseNumber
+          =f.label :license_number, "免許番号"
+          =f.number_field :license_number
+    .UserInfo__Group2
+      .UserInfo__Group2__Info1
+        .UserInfo__Group2__Info1PhoneNumber
+          =f.label :phone_number, "電話番号"
+          =f.telephone_field :phone_number
+        .UserInfo__Group2__Info1PhoneNumber2
+          =f.label :phone_number2, "電話番号2"
+          =f.telephone_field :phone_number2
+        .UserInfo__Group2__Info1Email
+          =f.label :email, "Eメール"
+          =f.email_field :email
+      .UserInfo__Group2__Info2
+        .UserInfo__Group2__Info2PostalCode
+          =f.label :postal_code, "郵便番号"
+          =f.number_field :postal_code
+        .UserInfo__Group2__Info2PermanentAddress
+          =f.label :permanent_address, "本籍地"
+          =f.text_field :permanent_address
+        .UserInfo__Group2__Info2FormerPermanentAddress
+          =f.label :former_permanent_address, "旧本籍地"
+          =f.text_field :former_permanent_address
+        .UserInfo__Group2__Info2Address
+          =f.label :address, "住所"
+          =f.text_area :address
+      .UserInfo__Group2__Info3
+        .UserInfo__Group2__Info3PostalCode2
+          =f.label :postal_code2, "郵便番号2"
+          =f.number_field :postal_code2
+        .UserInfo__Group2__Info3Address2
+          =f.label :address2, "住所2"
+          =f.text_area :address2
+      .UserInfo__Group2__Info4
+        .UserInfo__Group2__Info4Remark
+          =f.label :remark, "備考"
+          =f.text_area :remark
+
+    .UserInfo__Group3
+      .UserInfo__Group3__Info1
+        .UserInfo__Group3__Info1Admin
+          =f.label :admin, "管理者"
+          =f.check_box :admin, checkedvalue: 1, uncheckedvalu: ""
+        .UserInfo__Group3__Info1Teacher
+          =f.label :teacher, "講師"
+          =f.check_box :teacher, checkedvalue: 1, uncheckedvalu: ""
+      .UserInfo__Group3__Info2

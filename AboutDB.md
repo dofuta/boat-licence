@@ -15,14 +15,14 @@
 |nationality|string||国籍|
 |permanent_address |string||本籍地|
 |former_permanent_address|string||旧本籍地|
-|license_number|integer||免許番号|
+|license_number|string||免許番号|
 |license_expiration_date|date||有効期限|
 |license_status|integer||1: 一級, 2: 二級, 4: 特殊（合計で表す。6なら、二級と特殊）
 |phone_number|integer|null: false|電話番号1|
-|phone_number2|integer||電話番号2|
-|postal_code|integer||郵便番号|
+|phone_number2|string||電話番号2|
+|postal_code|string||郵便番号|
 |address|string||住所|
-|postal_code2|integer||郵便番号2|
+|postal_code2|string||郵便番号2|
 |address2|string||住所2|
 |admin|integer||1 or null 管理者|
 |teacher|integer|| 1 or null 講師|
@@ -123,7 +123,7 @@
 |shintaikensa_status|integer||身体検査の要不要[要:0, 不要:1, 証明書あり:2]|
 |exam_ticket|integer||1 or null 受験票受け渡し|
 |text_book|integer||1 0r null 教材の発送|
-|exam_number|integer||受験番号|
+|exam_number|string||受験番号|
 |pass_or_fail|integer||0 or 1, 合否|
 |remark|text||備考|
 |created_at|datetime|
@@ -149,7 +149,7 @@
 |renewal_or_expiration|integer|null: false|更新:0, 失効:1|
 |payment_confirmation|integer||1 or null 領収|
 |shintaikensa_status|integer||身体検査の要不要[要:0, 不要:1, 証明書あり:2]|
-|reservation_number|integer||予約番号|
+|reservation_number|string||予約番号|
 |remark|text||備考|
 |created_at|datetime|
 |updated_at|datetime|

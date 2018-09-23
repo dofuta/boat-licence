@@ -1,3 +1,4 @@
-=render partial: "user_info"
-=render partial: "taken_lesson", collection: @taken_lessons
-=render partial: "taken_exam", collection: @taken_exams
+.UserSearch
+  %input.UserSearch__Field{placeholder:"漢字かカタカナで検索 🔎"}
+  .UserSearch__List
+    =render @users

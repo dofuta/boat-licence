@@ -2,6 +2,18 @@
 @import "./variable";
 @import "./navbar";
 @import "./content";
-@import "./taken_exam";
-@import "./taken_lesson";
-@import "./user_info";
+// flash message
+@import "./flash_message";
+// users_controller
+// users/show
+@import "./users/show";
+@import "./users/taken_lesson";
+@import "./users/taken_exam";
+// users/index
+@import "./users/index";
+// places_controller
+// places/index
+@import "./places/index";
+@import "./places/place";
+// shadow
+@import "./shadow";
