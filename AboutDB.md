@@ -189,25 +189,29 @@
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|user_id|references|:user, foreign_key: true||
+|user_id|references|:user, foreign_key: true|担当する講師のid|
 |place_id|references|:place, foreign_key: true||
-|type|integer|null: false|実技: 0, 初級: 1, 上級: 2, 特殊: 3|
+|type_number|integer|null: false|実技: 0, 初級: 1, 上級: 2, 特殊: 3, 湖川: 4|
 |date|date|null: false|日付|
 |gg_event_id|text||Googleカレンダーのイベントid. GASによってイベントが作成された後、ここにidを保存しておく|
+|remark|text||備考|
 |created_at|datetime|
 |updated_at|datetime|
 
 #### Association
+- belongs_to :place
+> lesson_placeを１つ持つ
+
 - has_many :user_owned_lessons
 > user_owned_lessonを複数持つ
+
+- has_many :user_teaching_lessons
+> user_teaching_lessonを複数持つ
 
 - has_many :users, through: :user_owned_lessons
 > user_owned_lessonを通してuserを複数持つ
 
-- belongs_to :place
-> lesson_placeを１つ持つ
-
-- has_many :users, through: :user_teaching_lessons
+- has_many :teachers, through: :user_teaching_lessons, source: :users
 > user_teaching_lessonを通してuserを複数持つ
 
 <br>

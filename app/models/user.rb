@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  has_many :user_owned_exam,       dependent: :destroy
+  has_many :user_owned_lessons,       dependent: :destroy
   has_many :user_owned_exams,      dependent: :destroy
   has_many :user_teaching_lessons, dependent: :destroy
 

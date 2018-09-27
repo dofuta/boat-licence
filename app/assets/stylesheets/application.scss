@@ -15,5 +15,12 @@
 // places/index
 @import "./places/form";
 @import "./places/place";
+// lessons_controller
+@import "./lessons/index";
+@import "./lessons/lesson";
+
+// user_owened_lessons_controller
+@import "./user_owned_lessons/user_owned_lesson";
+//
 // shadow
 @import "./shadow";

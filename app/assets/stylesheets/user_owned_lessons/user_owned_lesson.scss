@@ -1,0 +1,54 @@
+.UserOwnedLesson{
+  margin: 0 auto;
+  width: 660px;
+  label{
+    @extend %label_base;
+  }
+  &__Group1{
+    float: left;
+    padding: 10px;
+    &Payment{
+      width: 200px;
+    }
+    &UpdatedAt{
+      width: 200px;
+    }
+  }
+  &__Remark{
+    float: left;
+    padding: 10px;
+    textarea{
+      border-width: 2px;
+      border-radius: 10px;
+      border-color: $gray2;
+      outline: none;
+      width: 402px;
+      font-size: 20px;
+      color: $gray4;
+
+    }
+  }
+  &__Submit{
+    clear: both;
+    input{
+      height: 60px;
+      width: 660px;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      outline: none;
+      margin-left: 0px;
+      background-color: $lightblue1;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      // 中身の要素縦方向中央寄せ
+      display: flex;
+      align-items: center;
+      // 中身の要素横方向中央寄せ
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+
+    }
+  }
+}

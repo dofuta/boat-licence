@@ -5,6 +5,14 @@ Rails.application.routes.draw do
     collection do
        get :search
     end
+    resources :lessons, only: [:index] do
+      resources :user_owned_lessons, only:[:new, :create]
+    end
+    resources :exams, only: [:index] do
+      resources :user_owned_lessons, only:[:new, :create]
+    end
   end
-  resources :places, only: [:index, :create, :edit, :update, :destroy]
+  resources :places,  only: [:index, :create, :edit, :update, :destroy]
+  resources :lessons, only: [:index,:show]
+  resources :exams,   only: [:index]
 end

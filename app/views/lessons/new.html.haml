@@ -1,0 +1,25 @@
+
+.UserOwnedLesson
+  =form_for user_owned_lesson, url: user_UserOwned_lesson_path do |f|
+  .UserOwnedLesson__LessonInfo
+    .UserOwnedLesson___LessonInfoType
+      =f.label :type, "種類"
+      =lesson_type(user_owned_lesson.lesson.type)
+    .UserOwnedLesson__LessonInfoDate
+      =f.label :date, "講習日"
+      =user_owned_lesson.lesson.date
+    .UserOwnedLesson__LessonInfoPlace
+      =f.label :date, "会場名"
+      =user_owned_lesson.lesson.place.facility_name
+    .UserOwnedLesson__LessonInfoLink
+      =link_to "詳細", lesson_path(user_owned_lesson.lesson.id)
+  .UserOwnedLesson__OwnedInfo
+    .UserOwnedLesson__OwnedInfoPayment
+      =f.label :payment_confirmation, "入金"
+      =f.check_box :payment_confirmation
+    .UserOwnedLesson__OwnedInfoRemark
+      =f.label :remark, "備考"
+      =f.text_area :remark
+    .UserOwnedLesson__OwnedInfoUpdatedAt
+      =f.label :updated_at
+      =simple_time(user_owned_lesson.updated_at)

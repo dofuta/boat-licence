@@ -11,7 +11,9 @@ $(document).on("ajax:success", "#user-update-form", function(user) {
       $('.FlashMessage').prepend(flashmessage)
   };
   buildFlash("データを更新しました！","notice")
-  $('input, textarea').css('background-color', 'white');
+  // フィールドを更新したので背景色を白に戻す
+  $('input, textarea, select').css('background-color', 'white');
+  // 更新ボタンを削除する
   $('.UserInfo__Group3__Info2Submit').remove();
 });
 $(document).on("ajax:error", "#user-update-form", function(e) {

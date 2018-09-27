@@ -24,7 +24,7 @@
         .UserInfo__Group1__Info2Birth
           =f.label :birth, "生年月日"
           .UserInfo__Group1__Info2BirthSelect
-            =date_select_ja(f.date_select :birth)
+            =date_select_ja(f.date_select :birth, start_year: 1940)
       .UserInfo__Group1__Info3
         .UserInfo__Group1__Info3LicenseStatus
           =f.label :license_status, "免許種別"
@@ -75,8 +75,8 @@
       .UserInfo__Group3__Info1
         .UserInfo__Group3__Info1Admin
           =f.label :admin, "管理者"
-          =f.check_box :admin, checkedvalue: 1, uncheckedvalu: ""
+          =f.check_box :admin
         .UserInfo__Group3__Info1Teacher
           =f.label :teacher, "講師"
-          =f.check_box :teacher, checkedvalue: 1, uncheckedvalu: ""
+          =f.check_box :teacher
       .UserInfo__Group3__Info2

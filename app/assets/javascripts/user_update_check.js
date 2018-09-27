@@ -14,7 +14,10 @@ $(document).on('turbolinks:load', function() {
   $('#user_former_name_furigana').on('change',function(){
     $(this).css('background-color', '#fad390');
   });
-  $('#user_gender').on('change',function(){
+  $('#user_gender_0').on('change',function(){
+    $(this).css('background-color', '#fad390');
+  });
+  $('#user_gender_1').on('change',function(){
     $(this).css('background-color', '#fad390');
   });
   // 生年月日

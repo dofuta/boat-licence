@@ -18,6 +18,8 @@ class UsersController < ApplicationController
   def show
     # 選択したuserを表示
     @user = User.find(params[:id])
+    @user_owned_lessons = @user.user_owned_lessons.includes(:lesson)
+    @user_owned_exams   = @user.user_owned_exams.includes(:exam)
     set_page_name(@user.name)
   end
 
@@ -27,6 +29,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user
     else
+      flash[:alert] = "更新できませんでした"
     end
   end
 
