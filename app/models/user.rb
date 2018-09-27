@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  has_many :user_owned_exam,       dependent: :destroy
+  has_many :user_owned_lessons,       dependent: :destroy
   has_many :user_owned_exams,      dependent: :destroy
   has_many :user_teaching_lessons, dependent: :destroy
 
@@ -17,4 +17,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
+
+  enum gender_type: {男:0, 女:1}
 end

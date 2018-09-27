@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_19_105858) do
+ActiveRecord::Schema.define(version: 2018_09_25_070302) do
 
   create_table "exams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "date", null: false
@@ -40,12 +40,13 @@ ActiveRecord::Schema.define(version: 2018_09_19_105858) do
 
   create_table "lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "type", null: false
+    t.integer "type_number", null: false
     t.date "date", null: false
     t.text "gg_event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "place_id"
+    t.text "remark"
     t.index ["place_id"], name: "index_lessons_on_place_id"
     t.index ["user_id"], name: "index_lessons_on_user_id"
   end
@@ -79,7 +80,7 @@ ActiveRecord::Schema.define(version: 2018_09_19_105858) do
     t.integer "shintaikensa_status"
     t.integer "exam_ticket"
     t.integer "text_book"
-    t.integer "exam_number"
+    t.string "exam_number"
     t.integer "pass_or_fail"
     t.integer "remark"
     t.datetime "created_at", null: false
@@ -105,7 +106,7 @@ ActiveRecord::Schema.define(version: 2018_09_19_105858) do
     t.integer "renewal_or_expiration", null: false
     t.integer "payment_confirmation"
     t.integer "shintaikensa_status"
-    t.integer "reservation_number"
+    t.string "reservation_number"
     t.text "remark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -144,17 +145,18 @@ ActiveRecord::Schema.define(version: 2018_09_19_105858) do
     t.string "nationality"
     t.string "permanent_address"
     t.string "former_permanent_address"
-    t.integer "license_number"
+    t.string "license_number"
     t.date "license_expiration_date"
     t.integer "license_status"
-    t.integer "phone_number"
-    t.integer "phone_number2"
-    t.integer "postal_code"
+    t.string "phone_number"
+    t.string "phone_number2"
+    t.string "postal_code"
     t.string "address"
-    t.integer "postal_code2"
+    t.string "postal_code2"
     t.string "address2"
     t.integer "admin"
     t.integer "teacher"
+    t.text "remark"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name"
     t.index ["name_furigana"], name: "index_users_on_name_furigana"

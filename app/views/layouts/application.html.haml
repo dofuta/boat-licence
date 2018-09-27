@@ -1,7 +1,8 @@
 !!!
-%html
+%html{lang: "ja"}
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "content-language", content: "ja"}/
+    %meta{name: "google", content:"notranslate"}
     %title BoatLicence
     = csrf_meta_tags
     = csp_meta_tag
@@ -11,6 +12,4 @@
     =render partial: "shared/navbar"
     / ナビゲーションをposition: fixed;にしているので、その高さぶんの.Contentを作成している
     .Content
-    %p.notice= notice
-    %p.alert= alert
     = yield

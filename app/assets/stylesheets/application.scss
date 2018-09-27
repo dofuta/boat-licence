@@ -2,6 +2,25 @@
 @import "./variable";
 @import "./navbar";
 @import "./content";
-@import "./taken_exam";
-@import "./taken_lesson";
-@import "./user_info";
+// flash message
+@import "./flash_message";
+// users_controller
+// users/show
+@import "./users/show";
+@import "./users/taken_lesson";
+@import "./users/taken_exam";
+// users/index
+@import "./users/index";
+// places_controller
+// places/index
+@import "./places/form";
+@import "./places/place";
+// lessons_controller
+@import "./lessons/index";
+@import "./lessons/lesson";
+
+// user_owened_lessons_controller
+@import "./user_owned_lessons/user_owned_lesson";
+//
+// shadow
+@import "./shadow";

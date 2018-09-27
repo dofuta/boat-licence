@@ -1,0 +1,19 @@
+.PlaceIndex
+  .PlaceIndex__Form
+    =form_for @place, url: place_path do |f|
+      .PlaceIndex__FormGroup1
+        .PlaceIndex__FormGroup1__FacilityName
+          =f.label :facility_name, "会場名"
+          =f.text_field :facility_name
+        .PlaceIndex__FormGroup1__MapImage
+          =f.label :map_image, "地図の画像ファイル"
+          =f.file_field :map_image
+      .PlaceIndex__FormGroup2
+        .PlaceIndex__FormGroup2__Address
+          =f.label :address, "住所"
+          =f.text_area  :address
+        .PlaceIndex__FormGroup2__Url
+          =f.label :url, "URL"
+          =f.text_field :url
+      .PlaceIndex__FormSubmit
+        =f.submit "更新する"

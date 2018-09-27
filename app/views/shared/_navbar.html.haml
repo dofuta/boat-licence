@@ -1,10 +1,9 @@
 .Navbar
   .Navbar__Info
     .Navbar__InfoCurrentPage
-      現在の表示
+      =@page
   .Navbar__Group1
-    .Navbar__Group1Kojin
-      個人
+    =link_to "個人", users_path, class:"Navbar__Group1Kojin"
   .Navbar__Group2
     .Navbar__Group2Calendar
       カレンダー
@@ -29,3 +28,4 @@
       更新
     .Navbar__Group5RxLessonSikkou
       失効
+  =render partial: "shared/flash_message"

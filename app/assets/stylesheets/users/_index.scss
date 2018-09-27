@@ -1,0 +1,58 @@
+%AddedUser_base{
+  text-decoration: none;
+  color: #FFF;
+  border-bottom: solid 2px $gray2;
+  border-radius: 3px;
+}
+%AddedUser_base:active{
+  // clickの時
+  -ms-transform: translateY(4px);
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
+  border-bottom: none;
+}
+%AddedUser_base:hover{
+  color: $gray4;
+}
+
+
+.UserSearch{
+  input::placeholder{
+    color: $gray2;
+  }
+  input:focus{
+    outline: 0;
+  }
+  &__Field{
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+    border-color: $gray2;
+    border-style: solid;
+    padding: 10px;
+    width: 400px;
+    font-size: 24px;
+    color: $gray3
+  }
+  &__List{
+    margin: 0 auto;
+    width: 600px;
+    &AddedUser{
+      // border: 1;
+      // border-width: medium;
+      // border-color: $gray3;
+      padding: 10px;
+      &Link{
+        @extend %AddedUser_base;
+        display: block;
+        padding: 10px;
+        margin: 10px 0;
+        color: $gray3;
+        font-size: 30px;
+        text-decoration: none;
+
+      }
+    }
+  }
+}

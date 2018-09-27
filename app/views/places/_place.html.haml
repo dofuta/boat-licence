@@ -1,0 +1,19 @@
+.Place
+  .Place__Group1
+    .Place__Group1FacilityName
+      %label 会場名
+      =place.facility_name
+    .Place__Group1MapImage
+      %label 地図
+      =place.map_image
+  .Place__Group2
+    .Place__Group2Address
+      %label 住所
+      =place.address
+    .Place__Group2Url
+      %label URL
+      =place.url
+  .Place__Update
+    =link_to "編集する", edit_place_path(place.id)
+  .Place__Delete
+    %a#delete{data: {link: "/places/#{place.id}"}} ダブルクリックで削除
