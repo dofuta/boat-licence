@@ -124,7 +124,7 @@
 |exam_ticket|integer||1 or null 受験票受け渡し|
 |text_book|integer||1 0r null 教材の発送|
 |exam_number|string||受験番号|
-|pass_or_fail|integer||0 or 1, 合否|
+|pass_or_fail|integer||合否[合格: 0, 不合格: 1, キャンセル: 2]|
 |remark|text||備考|
 |created_at|datetime|
 |updated_at|datetime|
@@ -224,8 +224,9 @@
 |------|----  |-------                   |------       |
 |place_id|references|:place, foreign_key: true|
 |date|date|null: false|日付|
-|type|integer|null: false|一二級: 0, 特殊: 1|
+|type_number|integer|null: false|一二級: 0, 特殊: 1|
 |announcement_date|date|null: false|合格発表日|
+|remark|text||備考|
 |gg_event_id|text||GoogleカレンダーのイベントID|
 
 #### Association

@@ -24,8 +24,8 @@ module ApplicationHelper
   end
 
 # 講習のタイプを文字に変換して表示するメソッド
-  def lesson_type(type)
-    case type
+  def lesson_type(type_number)
+    case type_number
     when 0
       "実技"
     when 1
@@ -37,9 +37,23 @@ module ApplicationHelper
     when 4
       "湖川"
     else
-      type
+      type_number
     end
   end
+
+  # 試験のタイプを文字に変換して表示するメソッド
+    def exam_type(type_number)
+      case type_number
+      when 0
+        "1・2級"
+      when 1
+        "特殊"
+      when 2
+        "湖川"
+      else
+        type_number
+      end
+    end
 
 # 時間を綺麗に表示するためのメソッド
   def simple_time(datetime)

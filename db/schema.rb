@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_25_070302) do
+ActiveRecord::Schema.define(version: 2018_09_28_083417) do
 
   create_table "exams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "date", null: false
-    t.integer "type", null: false
+    t.integer "type_number", null: false
     t.date "announcement_date"
     t.text "gg_event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "place_id"
+    t.text "remark"
     t.index ["place_id"], name: "index_exams_on_place_id"
   end
 
@@ -82,7 +83,7 @@ ActiveRecord::Schema.define(version: 2018_09_25_070302) do
     t.integer "text_book"
     t.string "exam_number"
     t.integer "pass_or_fail"
-    t.integer "remark"
+    t.text "remark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exam_id"], name: "index_user_owned_exams_on_exam_id"

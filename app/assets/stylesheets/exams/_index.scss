@@ -1,8 +1,8 @@
-.LessonSearch{
+.ExamSearch{
   &__Group1{
-    overflow: auto;
     margin: 0 auto;
-    width: 598px;
+    overflow: auto;
+    width: 872px;
     &TypeField{
       @extend %dropdown_base;
       float: left;
@@ -33,28 +33,31 @@
         color: $gray3;
       }
     }
-    &Submit{
-      float: left;
-      input{
-        height: 52px;
-        width: 100px;
-        border-radius: 33px;
-        background-color: $lightblue1;
-        color: white;
-        font-size: 20px;
-        text-decoration: none;
-        font-weight: bold;
-        outline: none;
-        // 中身の要素縦方向中央寄せ
-        display: flex;
-        align-items: center;
-        // 中身の要素横方向中央寄せ
-        justify-content: center;
-        cursor: pointer;
-      }
       input:active{
         border: none;
       }
+    }
+  }
+
+.Search__{
+  &Submit{
+    float: left;
+    input{
+      height: 52px;
+      width: 100px;
+      border-radius: 33px;
+      background-color: $lightblue1;
+      color: white;
+      font-size: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      outline: none;
+      // 中身の要素縦方向中央寄せ
+      display: flex;
+      align-items: center;
+      // 中身の要素横方向中央寄せ
+      justify-content: center;
+      cursor: pointer;
     }
   }
   &__List{

@@ -18,8 +18,11 @@ class UserOwnedLessonsController < ApplicationController
   end
 
   def update
-    @user = UserOwnedLesson.find(params[:id])
-    if @user.update(user_owned_lesson_params)
+    @user_owned_lesson = UserOwnedLesson.find(params[:id])
+    if @user_owned_lesson.update(user_owned_lesson_params)
+      render json: @user_owned_lesson
+    else
+      flash[:alert] = "更新できませんでした"
     end
   end
 
@@ -29,6 +32,6 @@ class UserOwnedLessonsController < ApplicationController
 
   private
   def user_owned_lesson_params
-    params.require(:user_owned_lesson).permit(:user_id, :leson_id, :payment_confirmation, :remark).merge({user_id: params[:user_id], lesson_id: params[:lesson_id]})
+    params.require(:user_owned_lesson).permit(:user_id, :leson_id, :payment_confirmation, :remark, :updated_at).merge({user_id: params[:user_id], lesson_id: params[:lesson_id]})
   end
 end

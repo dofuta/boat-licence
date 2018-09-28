@@ -1,5 +1,6 @@
 .UserOwnedLesson{
   margin: 0 auto;
+  height: 200px;
   width: 660px;
   label{
     @extend %label_base;
@@ -7,6 +8,7 @@
   &__Group1{
     float: left;
     padding: 10px;
+    height: 120px;
     &Payment{
       width: 200px;
     }

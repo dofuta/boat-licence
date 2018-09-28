@@ -14,18 +14,19 @@
       .UserOwnedLesson__Submit
         =f.submit :登録
 -else  # それ以外のアクション
-  =render partial: user_owned_lesson.lesson
-  .UserOwnedLesson
-    =form_for user_owned_lesson, url: user_lesson_user_owned_lessons_path(user_owned_lesson.user.id, user_owned_lesson.lesson.id) do |f|
-      .UserOwnedLesson__Group1
-        .UserOwnedLesson__Group1Payment
-          =f.label :payment_confirmation, "入金"
-          =f.check_box :payment_confirmation
-        .UserOwnedLesson__Group1UpdatedAt
-          =f.label :updated_at, "最終更新日"
-          =simple_time(user_owned_lesson.updated_at) if user_owned_lesson.updated_at?
-      .UserOwnedLesson__Remark
-        =f.label :remark, "備考"
-        =f.text_area :remark
-      .UserOwnedLesson__Submit
-        =f.submit :登録
+  .UserOwnedList__LessonsList__Each
+    =render partial: user_owned_lesson.lesson
+    .UserOwnedLesson
+      =form_with(model: user_owned_lesson, url: user_lesson_user_owned_lesson_path(user_owned_lesson.user.id, user_owned_lesson.lesson.id, user_owned_lesson.id), method: :patch) do |f|
+        .UserOwnedLesson__Group1
+          .UserOwnedLesson__Group1Payment
+            =f.label :payment_confirmation, "入金"
+            =f.check_box :payment_confirmation
+          .UserOwnedLesson__Group1UpdatedAt
+            =f.label :updated_at, "最終更新日"
+            =simple_time(user_owned_lesson.updated_at) if user_owned_lesson.updated_at?
+        .UserOwnedLesson__Remark
+          =f.label :remark, "備考"
+          =f.text_area :remark
+        .UserOwnedLesson__Submit
+          =f.submit :登録

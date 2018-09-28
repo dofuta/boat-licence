@@ -4,23 +4,34 @@
 @import "./content";
 // flash message
 @import "./flash_message";
+
 // users_controller
 // users/show
-@import "./users/show";
-@import "./users/taken_lesson";
-@import "./users/taken_exam";
+@import "./users/user_info";
+
 // users/index
 @import "./users/index";
+@import "./users/user_owned_list";
+
 // places_controller
 // places/index
 @import "./places/form";
 @import "./places/place";
+
 // lessons_controller
 @import "./lessons/index";
 @import "./lessons/lesson";
 
 // user_owened_lessons_controller
 @import "./user_owned_lessons/user_owned_lesson";
+
+//exams_controller
+@import "./exams/index";
+@import "./exams/exam";
+
+// user_owned_exams_controller
+@import "./user_owned_exams/user_owned_exam";
+
 //
 // shadow
 @import "./shadow";

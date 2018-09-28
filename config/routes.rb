@@ -6,10 +6,10 @@ Rails.application.routes.draw do
        get :search
     end
     resources :lessons, only: [:index] do
-      resources :user_owned_lessons, only:[:new, :create]
+      resources :user_owned_lessons, only:[:new, :create, :update]
     end
     resources :exams, only: [:index] do
-      resources :user_owned_lessons, only:[:new, :create]
+      resources :user_owned_exams, only:[:new, :create, :update]
     end
   end
   resources :places,  only: [:index, :create, :edit, :update, :destroy]
