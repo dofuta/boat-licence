@@ -32,6 +32,6 @@ class UserOwnedLessonsController < ApplicationController
 
   private
   def user_owned_lesson_params
-    params.require(:user_owned_lesson).permit(:user_id, :leson_id, :payment_confirmation, :remark, :updated_at).merge({user_id: params[:user_id], lesson_id: params[:lesson_id]})
+    params.require(:user_owned_lesson).permit(:user_id, :lesson_id, :payment_confirmation, :remark, :updated_at).merge({user_id: params[:user_id], lesson_id: params[:lesson_id]})
   end
 end
