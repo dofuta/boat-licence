@@ -9,7 +9,7 @@
         %option{value:"3"}特殊
     .LessonSearch__Group1DateField
       %input{type:"date", name:"calendar", max:"9999-12-31", id:"date"}
-    .LessonSearch__Group1Submit
+    .Search__Submit
       %input{type: "submit", href:"/lessons/search",value: "検索"}
-  .LessonSearch__List
+  .Search__List
     =render @lessons

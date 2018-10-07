@@ -1,0 +1,46 @@
+-if controller.action_name == "new" || controller.action_name == "show" ##newアクションの場合(user_owned_exams#new),showアクションの時（users#show）
+  .Exam--withoutlink
+    .Exam__Group1
+      .Exam__Group1Type
+        %label 種類
+        =exam_type(exam.type_number)
+      .Exam__Group1Date
+        %label 試験日
+        =simple_date(exam.date)
+    .Exam__Group2
+      .Exam__Group2Place
+        %label 会場名
+        =exam.place.facility_name
+      .Exam__Group2GGEvent
+        %label Googleカレンダー
+        =gg_event?(exam.gg_event_id)
+    .Exam__Group3
+      .Exam__Group3AnnouncementDate
+        %label 合格発表日
+        =simple_date(exam.announcement_date)
+      .Exam__Group3Remark
+        %label 備考
+        =exam.remark
+-else                               ##それ以外？(exams#index)の場合
+  %a.Exam{href:"#{new_user_exam_user_owned_exam_path(params[:user_id], exam.id)}"}
+    .Exam__Group1
+      .Exam__Group1Type
+        %label 種類
+        =exam_type(exam.type_number)
+      .Exam__Group1Date
+        %label 試験日
+        =simple_date(exam.date)
+    .Exam__Group2
+      .Exam__Group2Place
+        %label 会場名
+        =exam.place.facility_name
+      .Exam__Group2GGEvent
+        %label Googleカレンダー
+        =gg_event?(exam.gg_event_id)
+    .Exam__Group3
+      .Exam__Group3AnnouncementDate
+        %label 合格発表日
+        =simple_date(exam.announcement_date)
+      .Exam__Group3Remark
+        %label 備考
+        =exam.remark

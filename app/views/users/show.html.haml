@@ -1,14 +1,16 @@
 / 個人情報の表示
 =render partial: "user_info"
 
-.UserOwnedLesson
-  .UserOwnedLesson__NewButton
-    =link_to "新規作成", user_lessons_path(params[:id])
-  / 受講する講習一覧の表示
-  =render partial: "user_owned_lesson", collection: @user_owned_lessons
-
-.UserOwnedExam
-  .UserOwnedExam__NewButton
-    =link_to "新規作成", user_exams_path(params[:id])
-  / 受験する試験一覧の表示
-  =render partial: "user_owned_exam", collection: @user_owned_exams
+.UserOwnedList
+  .UserOwnedList__LessonsList
+    %p 講習
+    .UserOwnedList__LessonsList__NewButton
+      =link_to "新規作成", user_lessons_path(params[:id])
+    / 受講する講習一覧の表示
+    =render partial: "user_owned_lesson", collection: @user_owned_lessons
+  .UserOwnedList__ExamsList
+    %p 試験
+    .UserOwnedList__ExamsList__NewButton
+      =link_to "新規作成", user_exams_path(params[:id])
+    / 受験する試験一覧の表示
+    =render partial: "user_owned_exam", collection: @user_owned_exams

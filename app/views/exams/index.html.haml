@@ -1,0 +1,16 @@
+.ExamSearch
+  .ExamSearch__Group1
+    .ExamSearch__Group1TypeField
+      %select{id: "type_number"}
+        %option{value:""}種類を選ぶ
+        %option{value:"0"}1・2級
+        %option{value:"1"}特殊
+        %option{value:"2"}湖川
+    .ExamSearch__Group1DateField
+      %input{type:"date", name:"calendar", max:"9999-12-31", id:"date"}
+    .ExamSearch__Group1AnnouncementDateField
+      %input{type:"date", name:"calendar", max:"9999-12-31", id:"announcement_date"}
+    .Search__Submit
+      %input{type: "submit", href:"/exams/search",value: "検索"}
+  .Search__List
+    =render @exams

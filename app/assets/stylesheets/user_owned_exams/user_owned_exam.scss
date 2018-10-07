@@ -1,0 +1,88 @@
+.UserOwnedExam{
+  margin: 0 auto;
+  height: 200px;
+  width: 660px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-color: white;
+  label{
+    @extend %label_base;
+  }
+  &__Group1{
+    float: left;
+    padding: 10px;
+    width: 145px;
+    &Pass_or_fail{
+
+    }
+    &Remark{
+      float: left;
+      padding: 10px;
+      textarea{
+        border-width: 2px;
+        border-radius: 10px;
+        border-color: $gray2;
+        outline: none;
+        width: 202px;
+        font-size: 20px;
+        color: $gray4;
+      }
+    }
+  }
+  &__Group2{
+    float: left;
+    padding: 10px;
+    width: 145px;
+    &ReExamStatus{
+
+    }
+    &Shintaikensa{
+
+    }
+  }
+  &__Group3{
+    float: left;
+    padding: 10px;
+    width: 145px;
+    &ExamTicket{
+
+    }
+    &ExamNumber{
+
+    }
+  }
+  &__Group4{
+    float: left;
+    padding: 10px;
+    height: 120px;
+    width: 145px;
+    &__Payment{
+
+    }
+    &__UpdatedAt{
+
+    }
+  }
+  &__Submit{
+    clear: both;
+    input{
+      height: 60px;
+      width: 660px;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      outline: none;
+      margin-left: 0px;
+      background-color: $lightblue1;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      // 中身の要素縦方向中央寄せ
+      display: flex;
+      align-items: center;
+      // 中身の要素横方向中央寄せ
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}

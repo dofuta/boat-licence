@@ -1,0 +1,84 @@
+.Exam{
+  margin: 15px auto;
+  overflow: auto;
+  display: block;
+  border-radius: 15px;
+  width: 660px;
+  background-color: white;
+  cursor: pointer;
+  label{
+    @extend %label_base;
+    cursor: pointer;
+  }
+  font-size: 24px;
+  color: $gray4;
+  text-decoration: none;
+  border-bottom: solid 2px $gray2;
+  border-radius: 3px;
+  &--withoutlink{
+    // aタグがない場合のクラス名（ひどい書き方なのであとで直す）
+    margin: 10px auto;
+    overflow: auto;
+    display: block;
+    border-radius: 15px;
+    width: 660px;
+    background-color: white;
+    label{
+      @extend %label_base;
+    }
+    font-size: 24px;
+    color: $gray4;
+    text-decoration: none;
+    border-bottom: solid 2px $gray2;
+    border-radius: 3px;
+  }
+
+  &__Group1{
+    float: left;
+    overflow: auto;
+    width: 220px;
+    &Type{
+      float: left;
+      padding: 10px;
+      width: 200px;
+    }
+    &Date{
+      float: left;
+      padding: 10px;
+      width: 200px;
+    }
+  }
+  &__Group2{
+    float: left;
+    overflow: auto;
+    width: 220px;
+    &Place{
+      float: left;
+      padding: 10px;
+      width: 200px;
+    }
+    &GGEvent{
+      float: left;
+      padding: 10px;
+      width: 200px;
+    }
+  }
+  &__Group3{
+    float: left;
+    overflow: auto;
+    width: 220px;
+    &AnnouncementDate{
+      float: left;
+      padding: 10px;
+      width: 200px;
+    }
+    &Remark{
+      float: left;
+      padding: 10px;
+      width: 200px;
+    }
+  }
+}
+.Exam:hover{
+  background-color: $gray1;
+}

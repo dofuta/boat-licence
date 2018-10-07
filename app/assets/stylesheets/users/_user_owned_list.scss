@@ -1,0 +1,49 @@
+.UserOwnedList{
+  margin: 0 auto;
+  width: 1350px;
+  p{
+    float: left;
+    padding: 5px;
+    width: 550px;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    background-color: $gray4;
+  }
+  a{
+    height: 60px;
+    width: 100px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-left: 0px;
+    background-color: $lightblue1;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    // 中身の要素縦方向中央寄せ
+    display: flex;
+    align-items: center;
+    // 中身の要素横方向中央寄せ
+    justify-content: center;
+    border: none;
+  }
+  &__LessonsList{
+    float: left;
+    border: 10px solid $gray2;
+    &__NewButton{
+    }
+    &__Each{
+
+    }
+  }
+  &__ExamsList{
+    float: left;
+    border: 10px solid $gray2;
+    border-left: none;
+    &__NewButton{
+    }
+    &__Each{
+    }
+  }
+}

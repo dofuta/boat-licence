@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
 
   def index
-    @lessons = Lesson.order(updated_at: :desc).limit(20)
+    @lessons = Lesson.order(date: :desc).limit(20)
     #jbuilderを返す
     respond_to do |format|
       format.html
@@ -26,6 +26,6 @@ class LessonsController < ApplicationController
 
   private
   def lesson_params
-    params.require[:lesson].permit(:user_id, :place_id, :type_number, :date, :gg_event_id, :input_date, :input_type)
+    params.require[:lesson].permit(:user_id, :place_id, :type_number, :date, :gg_event_id)
   end
 end
