@@ -1,0 +1,30 @@
+.Date
+  .Date__Top
+    .Date__TopDay
+      =date.day
+      =day_of_the_week(date)
+    .Date__TopRemark
+      備考備考備考
+    .Date__TopDetail
+      .Date__TopDetailBoatStauts
+        .Date__TopDetailBoatStauts1
+        .Date__TopDetailBoatStauts2
+        .Date__TopDetailBoatStauts3
+      .Date__TopDetail
+        .Date__TopDetailLessonStauts1
+        .Date__TopDetailLessonStauts2
+        .Date__TopDetailLessonStauts3
+  .Date__Bottom
+    .Date__Bottom__Group1
+      .Date__BottomSyokyuu
+        =date.syokyuu.each do |student|
+          student.name
+      .Date__BottomJoukyuu
+        =date.joukyuu.each do |student|
+          student.name
+      .Date__BottomTokusyu
+        =date.tokusyu.each do |student|
+          student.name
+    .Date__BottomJitugi
+      =date.jitugi.each do |student|
+        student.name

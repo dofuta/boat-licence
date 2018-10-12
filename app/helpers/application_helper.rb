@@ -1,3 +1,4 @@
+
 module ApplicationHelper
   def date_select_ja(src_html)
     dst_html = src_html.gsub(/>\d{4}</) do |m|
@@ -21,6 +22,11 @@ module ApplicationHelper
       ">#{year_ja} (#{year})<"
     end
     dst_html.html_safe
+  end
+
+# 曜日を日本語で返すメソッド
+  def day_of_the_week (date)
+    %w(日 月 火 水 木 金 土)[date.wday] + '曜日'
   end
 
 # 講習のタイプを文字に変換して表示するメソッド
@@ -64,6 +70,7 @@ module ApplicationHelper
     date.strftime("%Y/%m/%d")
   end
 
+# googlecalendarに登録済みかどうかを日本語にして返すメソッド
   def gg_event?(gg_event_id)
     if gg_event_id
       "登録済み"

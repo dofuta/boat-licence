@@ -12,7 +12,11 @@ Rails.application.routes.draw do
       resources :user_owned_exams, only:[:new, :create, :update]
     end
   end
-  resources :places,  only: [:index, :create, :edit, :update, :destroy]
-  resources :lessons, only: [:index,:show]
-  resources :exams,   only: [:index]
+  resources :places,   only: [:index, :create, :edit, :update, :destroy]
+  resources :lessons,  only: [:index,:show]
+  resources :exams,    only: [:index]
+
+  # calendars_controller
+  get 'calendar/:current_date/:next_or_ago/', to: 'calendars#index', as: 'calendar'
+
 end
