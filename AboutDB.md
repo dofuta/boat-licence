@@ -298,8 +298,8 @@
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|boat_name|string|null: false|船舶名|
-|address|string|null: false|保管場所|
+|name|string|null: false|船舶名|
+|address|text|null: false|保管場所|
 |boat_image|text||船の画像|
 |created_at|datetime|
 |updated_at|datetime|
