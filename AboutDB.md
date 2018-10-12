@@ -293,6 +293,27 @@
 <br>
 <br>
 
+## boats table
+> boatモデルと結びつく
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|boat_name|string|null: false|船舶名|
+|address|string|null: false|保管場所|
+|boat_image|text||船の画像|
+|created_at|datetime|
+|updated_at|datetime|
+
+#### Association
+- has_many :exams
+> examを所有する
+
+- has_many :lessons
+> lessonを所有する
+
+<br>
+<br>
+
 
 ## holidays table
 > holidayモデルと結びつく。holidayモデルは、講師の休みの日を保存するモデル。
@@ -308,3 +329,20 @@
 #### Association
 - belongs_to :user
 > userモデルに従属する
+
+<br>
+<br>
+
+## day_details table
+> DayDetailモデルと結びつく。DayDetailモデルは、カレンダーの各日の備考を保存するモデル。
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|date|date|null: false|日付|
+|remark|text||備考|
+|created_at|datetime|
+|updated_at|datetime|
+
+
+#### Association
+なし
