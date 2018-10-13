@@ -7,14 +7,26 @@ class CalendarsController < ApplicationController
     # 翌月、前月のボタンに合わせてcurrent_dateを更新する
     @current_date = updated_month(@current_date)
     # 1ヶ月の日付の配列
-    @dates = []
+    @days = []
     # 1日めの日付
     beginning_of_month = @current_date.beginning_of_month
     # 月の終わりの日付の日のみ（つまり数字）
     last_day = @current_date.end_of_month.day - 1
     # 配列に日付を一日ずつ入れる
     for i in 0..last_day do
-      @dates << beginning_of_month + i.day
+      date   = beginning_of_month + i.day
+      # 各日のremarkを取得する
+      daydetail = DayDetail.find_by(date: date) ? DayDetail.find_by(date: date) : DayDetail.new(date: date)
+      # 各講習の情報を、ユーザー情報を含めてとってくる
+      day = {date:      date,
+            daydetail:  daydetail,
+            jitugi:     Lesson.where(type_number: 0).where(date: date).includes(:users),
+            syokyuu:    Lesson.where(type_number: 1).where(date: date).includes(:users),
+            joukyuu:    Lesson.where(type_number: 2).where(date: date).includes(:users),
+            tokusyu:    Lesson.where(type_number: 3).where(date: date).includes(:users),
+            kosen:      Lesson.where(type_number: 3).where(date: date).includes(:users),
+            }
+      @days << day
     end
 
 # day_details_tableを作って、そこに日付を保存して備考とかを保持させたら良い。

@@ -26,7 +26,7 @@ module ApplicationHelper
 
 # 曜日を日本語で返すメソッド
   def day_of_the_week (date)
-    %w(日 月 火 水 木 金 土)[date.wday] + '曜日'
+    %w(日 月 火 水 木 金 土)[date.wday]
   end
 
 # 講習のタイプを文字に変換して表示するメソッド

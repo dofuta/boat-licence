@@ -1,0 +1,78 @@
+.Date
+  .Date__Top
+    .Date__TopDay
+      =day[:date].day
+      =day_of_the_week(day[:date])
+    .Date__TopRemark
+    -if day[:daydetail].id
+      =form_with(model: day[:daydetail], url: daydetail_path(day[:daydetail].id), method: :patch , id: "day_detail#{day[:daydetail].id}") do |f|
+        =f.label :remark, "備考"
+        =f.text_area :remark
+        =f.submit :更新
+      .Date__TopDetail
+        .Date__TopDetailBoatStauts
+          .Date__TopDetailBoatStauts1
+          .Date__TopDetailBoatStauts2
+          .Date__TopDetailBoatStauts3
+        .Date__TopDetail
+          .Date__TopDetailLessonStauts1
+          .Date__TopDetailLessonStauts2
+          .Date__TopDetailLessonStauts3
+      .Date__Bottom
+        .Date__Bottom__Group1
+          .Date__BottomSyokyuu
+            -day[:syokyuu].each do |lesson|
+              =lesson_type(lesson.type_number)
+              -lesson.users.each do |user|
+                =user.name
+          .Date__BottomJoukyuu
+            -day[:joukyuu].each do |lesson|
+              =lesson_type(lesson.type_number)
+              -lesson.users.each do |user|
+                =user.name
+          .Date__BottomTokusyu
+            -day[:tokusyu].each do |lesson|
+              =lesson_type(lesson.type_number)
+              -lesson.users.each do |user|
+                =user.name
+        .Date__BottomJitugi
+          -day[:jitugi].each do |lesson|
+            =lesson_type(lesson.type_number)
+            -lesson.users.each do |user|
+              =user.name
+    -else
+      =form_for day[:daydetail], url: daydetails_path do |f|
+        =f.label :remark, "備考"
+        =f.text_area :remark
+        =f.submit :更新
+      .Date__TopDetail
+        .Date__TopDetailBoatStauts
+          .Date__TopDetailBoatStauts1
+          .Date__TopDetailBoatStauts2
+          .Date__TopDetailBoatStauts3
+        .Date__TopDetail
+          .Date__TopDetailLessonStauts1
+          .Date__TopDetailLessonStauts2
+          .Date__TopDetailLessonStauts3
+      .Date__Bottom
+        .Date__Bottom__Group1
+          .Date__BottomSyokyuu
+            -day[:syokyuu].each do |lesson|
+              =lesson_type(lesson.type_number)
+              -lesson.users.each do |user|
+                =user.name
+          .Date__BottomJoukyuu
+            -day[:joukyuu].each do |lesson|
+              =lesson_type(lesson.type_number)
+              -lesson.users.each do |user|
+                =user.name
+          .Date__BottomTokusyu
+            -day[:tokusyu].each do |lesson|
+              =lesson_type(lesson.type_number)
+              -lesson.users.each do |user|
+                =user.name
+        .Date__BottomJitugi
+          -day[:jitugi].each do |lesson|
+            =lesson_type(lesson.type_number)
+            -lesson.users.each do |user|
+              =user.name

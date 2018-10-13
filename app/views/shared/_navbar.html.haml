@@ -5,8 +5,7 @@
   .Navbar__Group1
     =link_to "個人", users_path, class:"Navbar__Group1Kojin"
   .Navbar__Group2
-    .Navbar__Group2Calendar
-      カレンダー
+    =link_to "カレンダー", calendar_path(Date.today, 0), class:"Navbar__Group2Calendar"
   .Navbar__Group3
     .Navbar__Group3LessonSyokyuu
       初級
