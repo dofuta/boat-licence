@@ -226,6 +226,7 @@
 |date|date|null: false|日付|
 |type_number|integer|null: false|一二級: 0, 特殊: 1|
 |announcement_date|date|null: false|合格発表日|
+|exam_id|string|null: false|試験ID|
 |remark|text||備考|
 |gg_event_id|text||GoogleカレンダーのイベントID|
 
@@ -236,8 +237,12 @@
 - has_many :users, through: :user_owned_exams
 > userを通じてuser_owned_examを複数持つ
 
+- has_many :passed_numbers, primary_key: "exam_id", foreign_key: "exam_id"
+> exam_idの共通したpassed_numbersを複数持つ
+
 - belongs_to :place
 > placeに従属する
+
 
 <br>
 <br>
@@ -316,7 +321,7 @@
 
 
 ## holidays table
-> holidayモデルと結びつく。holidayモデルは、講師の休みの日を保存するモデル。
+> Holidayモデルと結びつく。Holidayモデルは、講師の休みの日を保存するモデル。
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
@@ -346,3 +351,21 @@
 
 #### Association
 なし
+
+<br>
+<br>
+
+## passed_numbers table
+> PassedNumberモデルと結びつく。PassedNumberモデルは、スクレイピングで取得した合格者の受験番号を保存するモデル。
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|exam_id|string|:exam, null: false, foreign_key: true||
+|exam_number|string|null: false|受験番号|
+|created_at|datetime|
+|updated_at|datetime|
+
+
+#### Association
+- belongs_to :exam, primary_key: "exam_id", foreign_key: "exam_id"
+>exam_idの共通したexamに従属する
