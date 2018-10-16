@@ -1,0 +1,2 @@
+class PassedNumber < ApplicationRecord
+end
