@@ -224,7 +224,7 @@
 |------|----  |-------                   |------       |
 |place_id|references|:place, foreign_key: true|
 |date|date|null: false|日付|
-|type_number|integer|null: false|一二級: 0, 特殊: 1|
+|type_number|integer|null: false|一級: 0, 二級: 1, 特殊: 2, 湖川: 3|
 |announcement_date|date|null: false|合格発表日|
 |exam_id|string||試験ID|
 |remark|text||備考|
@@ -365,6 +365,7 @@
 |------|----  |-------                   |------       |
 |exam_id|string|:exam, null: false, foreign_key: true||
 |exam_number|string||受験番号|
+|type_number|integer|null: false|一級: 0, 二級: 1, 特殊: 2, 湖川: 3|
 |created_at|datetime|
 |updated_at|datetime|
 
@@ -372,6 +373,13 @@
 #### Association
 - belongs_to :exam, primary_key: "exam_id", foreign_key: "exam_id"
 >exam_idの共通したexamに従属する
+
+#### Validation
+-  validates :exam_id,
+    uniqueness: {
+      message: "exam_number, type_numberが同じ組み合わせのレコードが既に存在します。",
+      scope: [:exam_number, :type_number]
+    }
 
 <br>
 <br>
@@ -383,6 +391,7 @@
 |------|----  |-------                   |------       |
 |exam_id|string|:exam, null: false, foreign_key: true||
 |exam_number|string||受験番号|
+|type_number|integer|null: false|一級: 0, 二級: 1, 特殊: 2, 湖川: 3|
 |created_at|datetime|
 |updated_at|datetime|
 
@@ -390,3 +399,10 @@
 #### Association
 - belongs_to :exam, primary_key: "exam_id", foreign_key: "exam_id"
 >exam_idの共通したexamに従属する
+
+#### Validation
+-  validates :exam_id,
+    uniqueness: {
+      message: "exam_number, type_numberが同じ組み合わせのレコードが既に存在します。",
+      scope: [:exam_number, :type_number]
+    }

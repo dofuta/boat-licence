@@ -2,28 +2,23 @@ class Scraping
   def self.search(month)
     driver = Selenium::WebDriver.for :chrome
     driver.manage.timeouts.implicit_wait = 5 # 5seconds待っても要素が現れなければ終了するようにする初期設定
+
+    puts "学科試験を取得開始します......"
     driver.get 'https://www1.jmra.or.jp/announce2003'
     driver.navigate.to 'https://www1.jmra.or.jp/announce2003'
     # アンカーテキスト(リンクテキスト)が一致する
     kantou  = driver.find_element(:link, '関東')
-    kantou.click
 
+    kantou.click
     # frameを選択
     frame_naiyo = driver.find_element(:name, 'naiyo')
     driver.switch_to.frame(frame_naiyo)
     # そのframeの中のframeを選択
     frame_siken = driver.find_element(:name, 'siken')
     driver.switch_to.frame(frame_siken)
-
     # アンカーテキスト(リンクテキスト)が一致するものを取得
     gakka  = driver.find_element(:partial_link_text, '学科試験')
-    jitugi = driver.find_element(:partial_link_text, '実技試験')
-    # リンクを取得する
-    gakka_link  = gakka.attribute('href')
-    jitugi_link = jitugi.attribute('href')
-
-    puts "学科試験を取得開始します"
-    # まずは学科試験へ移動する
+    # 学科試験へ移動する
     gakka.click
     # 大元のframeに移動
     driver.switch_to.default_content
@@ -84,7 +79,28 @@ class Scraping
       # 取り出したtextの中の数字だけ取り出す
       siken_id = siken_id.match(/[0-9]{6}/)
       puts "試験ID #{siken_id} を取得しました"
-
+      # 試験種別の要素の取得
+      type_number = driver.find_element(:css, "body > center > table:nth-child(1) > tbody > tr:nth-child(1) > td > font > b")
+      type_number = type_number.text
+      # 取り出したtextの中の試験の種類の文字だけ取り出す
+      # 種別にtype_numberに値を入れる
+      if type_number.match(/湖川/)
+        puts "湖川"
+        type_number = 3
+      else
+        type_number.match(/小型船舶/)
+        type_number = $`
+        puts type_number
+        case type_number
+        when "一級"
+          type_number = 0
+        when "二級"
+          type_number = 1
+        when "特殊"
+          type_number = 2
+        end
+      end
+      puts "#試験ID#{siken_id}, #{type_number}の試験情報を取得します"
       exam_number_table = driver.find_element(:css, "body > center > table:nth-child(3) > tbody")
       exam_number_line  = exam_number_table.find_elements(:tag_name, "tr")
       exam_number_line.each do |line|
@@ -96,15 +112,29 @@ class Scraping
           # numが"以下余白"や"該当者なし"でなければ、
           if exam_number != "以下余白" && exam_number != "該当者なし" && exam_number != ""
             # PassedNumberのインスタンスを生成する
-            GakkaPassedNumber.create(exam_number: exam_number, exam_id: siken_id)
+            GakkaPassedNumber.create(exam_number: exam_number, type_number: type_number, exam_id: siken_id)
             puts "受験番号 #{exam_number} のインスタンスを生成しました"
           end
         end
       end
     end
 
-    puts "ここから実技試験を取得開始します"
-    # 次は実技試験へ移動する
+    puts "ここから実技試験を取得開始します......"
+
+    driver.get 'https://www1.jmra.or.jp/announce2003'
+    driver.navigate.to 'https://www1.jmra.or.jp/announce2003'
+    # アンカーテキスト(リンクテキスト)が一致する
+    kantou  = driver.find_element(:link, '関東')
+    kantou.click
+    # frameを選択
+    frame_naiyo = driver.find_element(:name, 'naiyo')
+    driver.switch_to.frame(frame_naiyo)
+    # そのframeの中のframeを選択
+    frame_siken = driver.find_element(:name, 'siken')
+    driver.switch_to.frame(frame_siken)
+    # アンカーテキスト(リンクテキスト)が一致するものを取得
+    jitugi = driver.find_element(:partial_link_text, '実技試験　合格発表')
+    # 実技試験へ移動する
     jitugi.click
     # 大元のframeに移動
     driver.switch_to.default_content
@@ -133,7 +163,6 @@ class Scraping
     # URLを入れておく配列
     links = []
     # 月を指定(monthはこのclassメソッドの引数)
-    month = month - 1
     select_month.select_by(:index, month)
     for i in 0..30 do
       select_day = driver.find_element(:name, "cbogday")
@@ -167,7 +196,30 @@ class Scraping
       # 取り出したtextの中の数字だけ取り出す
       siken_id = siken_id.match(/[0-9]{6}/)
       puts "試験ID #{siken_id} を取得しました"
+      # 試験種別の要素の取得
+      type_number = driver.find_element(:css, "body > center > table:nth-child(1) > tbody > tr:nth-child(1) > td > font > b")
+      type_number = type_number.text
+      # 取り出したtextの中の試験の種類の文字だけ取り出す
+      # 種別にtype_numberに値を入れる
+      if type_number.match(/湖川/)
+        puts "湖川"
+        type_number = 3
+      else
+        type_number.match(/小型船舶/)
+        type_number = $`
+        puts type_number
+        case type_number
+        when "一級"
+          type_number = 0
+        when "二級"
+          type_number = 1
+        when "特殊"
+          type_number = 2
+        end
+      end
+      puts "試験ID#{siken_id}, #{type_number}の試験情報を取得します"
 
+      # 要素の取得
       exam_number_table = driver.find_element(:css, "body > center > table:nth-child(3) > tbody")
       exam_number_line  = exam_number_table.find_elements(:tag_name, "tr")
       exam_number_line.each do |line|
@@ -179,7 +231,7 @@ class Scraping
           # numが"以下余白"や"該当者なし"でなければ、
           if exam_number != "以下余白" && exam_number != "該当者なし" && exam_number != ""
             # PassedNumberのインスタンスを生成する
-            JitugiPassedNumber.create(exam_number: exam_number, exam_id: siken_id)
+            JitugiPassedNumber.create(exam_number: exam_number, type_number: type_number, exam_id: siken_id)
             puts "受験番号 #{exam_number} のインスタンスを生成しました"
           end
         end
