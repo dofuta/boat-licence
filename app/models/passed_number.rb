@@ -1,2 +1,0 @@
-class PassedNumber < ApplicationRecord
-end

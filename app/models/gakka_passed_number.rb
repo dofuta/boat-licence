@@ -1,0 +1,2 @@
+class GakkaPassedNumber < ApplicationRecord
+end

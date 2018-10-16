@@ -1,5 +1,5 @@
 class Scraping
-  def self.search
+  def self.search(month)
     driver = Selenium::WebDriver.for :chrome
     driver.manage.timeouts.implicit_wait = 5 # 5seconds待っても要素が現れなければ終了するようにする初期設定
     driver.get 'https://www1.jmra.or.jp/announce2003'
@@ -45,22 +45,21 @@ class Scraping
     frame_naiyo = driver.find_element(:name, 'naiyo')
     driver.switch_to.frame(frame_naiyo)
     select_month  = driver.find_element(:name, "cbogmonth")
-    select_day    = driver.find_element(:name, "cbogday")
-    search_button = driver.find_element(:name, "cmdSrc0")
+    # select_day    = driver.find_element(:name, "cbogday")
+    # search_button = driver.find_element(:name, "cmdSrc0")
 
 
     #セレクトタグの要素を指定してSelectクラスのインスタンスを作成
     select_month  = Selenium::WebDriver::Support::Select.new(select_month)
-    #セレクトタグの要素を指定してSelectクラスのインスタンスを作成
-    select_day    = Selenium::WebDriver::Support::Select.new(select_day)
+    # #セレクトタグの要素を指定してSelectクラスのインスタンスを作成
+    # select_day    = Selenium::WebDriver::Support::Select.new(select_day)
 
-    # # すべてのオプションを取得
-    # all_month_options = select_month.find_elements(:tag_name, 'option')
-    # # すべてのオプションを取得
-    # all_day_options = select_day.find_elements(:tag_name, 'option')
 
+    # URLを入れておく配列
     links = []
-    select_month.select_by(:index, 9)
+    # 月を指定(monthはこのclassメソッドの引数)
+    month = month - 1
+    select_month.select_by(:index, month)
     for i in 0..30 do
       select_day = driver.find_element(:name, "cbogday")
       #セレクトタグの要素を指定してSelectクラスのインスタンスを作成
@@ -80,26 +79,36 @@ class Scraping
         end
       end
     end
-
+    puts "取得した各試験のURL一覧"
     puts links
-
 
     links.each do |link|
       driver.get link
       driver.navigate.to link
-      # 試験情報の取得
-      siken_id = driver.find_element(:css, "body > center > table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(1) > code > font:nth-child(2)")
-      siken_id = siken_id[1]
-      puts siken_id
+      # 試験IDの要素の取得
+      siken_id = driver.find_element(:css, "body > center > table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(1)")
+      # textのみ取り出す
+      siken_id = siken_id.text
+      # 取り出したtextの中の数字だけ取り出す
+      siken_id = siken_id.match(/[0-9]{6}/)
+      puts "試験ID #{siken_id} を取得しました"
 
-      # 合格者の受験番号の入った要素の配列の取得
-      exam_numbers_el = driver.find_elements(:tag_name, "td")
-      # 配列処理でそれぞれの要素の中の文字だけを取得する
-      exam_numbers_el.each do |el|
-        # 最後は"以下余白"がついてくるので除外する
-        puts el.text if el.text != "以下余白"
+      exam_number_table = driver.find_element(:css, "body > center > table:nth-child(3) > tbody")
+      exam_number_line  = exam_number_table.find_elements(:tag_name, "tr")
+      exam_number_line.each do |line|
+        # 各行から１つずつの受験番号を取り出す
+        exam_numbers = line.find_elements(:tag_name, "td")
+        exam_numbers.each do |exam_number|
+          # textを取り出す
+          exam_number = exam_number.text
+          # numが"以下余白"や"該当者なし"でなければ、
+          if exam_number != "以下余白" && exam_number != "該当者なし" && exam_number != ""
+            # PassedNumberのインスタンスを生成する
+            GakkaPassedNumber.create(exam_number: exam_number, exam_id: siken_id)
+            puts "受験番号 #{exam_number} のインスタンスを生成しました"
+          end
+        end
       end
-
     end
 
     driver.quit # ブラウザ終了

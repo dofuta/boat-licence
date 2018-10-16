@@ -1,0 +1,2 @@
+class JitugiPassedNumber < ApplicationRecord
+end
