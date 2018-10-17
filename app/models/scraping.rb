@@ -1,5 +1,5 @@
 class Scraping
-  def self.search(month)
+  def self.search(last_month, last_day)
     driver = Selenium::WebDriver.for :chrome
     driver.manage.timeouts.implicit_wait = 5 # 5seconds待っても要素が現れなければ終了するようにする初期設定
 
@@ -45,9 +45,10 @@ class Scraping
     # URLを入れておく配列
     links = []
     # 月を指定(monthはこのclassメソッドの引数)
-    month = month - 1
+    month = last_month - 1
+    day   = last_day   - 1
     select_month.select_by(:index, month)
-    for i in 0..30 do
+    for i in day..30 do
       select_day = driver.find_element(:name, "cbogday")
       #セレクトタグの要素を指定してSelectクラスのインスタンスを作成
       select_day = Selenium::WebDriver::Support::Select.new(select_day)
@@ -169,7 +170,7 @@ class Scraping
     links = []
     # 月を指定(monthはこのclassメソッドの引数)
     select_month.select_by(:index, month)
-    for i in 0..30 do
+    for i in day..30 do
       select_day = driver.find_element(:name, "cbogday")
       #セレクトタグの要素を指定してSelectクラスのインスタンスを作成
       select_day = Selenium::WebDriver::Support::Select.new(select_day)
