@@ -226,7 +226,8 @@
 |date|date|null: false|日付|
 |type_number|integer|null: false|一級: 0, 二級: 1, 特殊: 2, 湖川: 3|
 |announcement_date|date|null: false|合格発表日|
-|exam_id|string||試験ID|
+|siken_id|string||試験ID|
+|org_siken_id|string||試験IDの末桁にtype_numberを追加したもの。一意なIDとなる|
 |remark|text||備考|
 |gg_event_id|text||GoogleカレンダーのイベントID|
 
@@ -237,11 +238,11 @@
 - has_many :users, through: :user_owned_exams
 > userを通じてuser_owned_examを複数持つ
 
-- has_many :gakka_passed_numbers, primary_key: "exam_id", foreign_key: "exam_id"
-> exam_idの共通したgakka_passed_numbersを複数持つ
+- has_many :gakka_passed_numbers, primary_key: "org_siken_id", foreign_key: "org_siken_id"
+> org_siken_idの共通したgakka_passed_numbersを複数持つ
 
-- has_many :jitugi_passed_numbers, primary_key: "exam_id", foreign_key: "exam_id"
-> exam_idの共通したjitugi_passed_numbersを複数持つ
+- has_many :jitugi_passed_numbers, primary_key: "org_siken_id", foreign_key: "org_siken_id"
+> org_siken_idの共通したjitugi_passed_numbersを複数持つ
 
 - belongs_to :place
 > placeに従属する
@@ -363,7 +364,8 @@
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|exam_id|string|:exam, null: false, foreign_key: true||
+|siken_id|string|null: false||
+|org_siken_id|string|:exam, null: false, foreign_key: true|試験IDの末桁にtype_numberを追加したもの。一意なIDとなる|
 |exam_number|string||受験番号|
 |type_number|integer|null: false|一級: 0, 二級: 1, 特殊: 2, 湖川: 3|
 |created_at|datetime|
@@ -371,18 +373,14 @@
 
 
 #### Association
-- belongs_to :exam, primary_key: "exam_id", foreign_key: "exam_id"
->exam_idの共通したexamに従属する
+- belongs_to :exam, primary_key: "org_siken_id", foreign_key: "org_siken_id"
+>org_siken_idの共通したexamに従属する。データベース上ではforeign_keyにしていない（org_siken_idはstring型であり、int型でないと外部キー制約はできないため）
 
 #### Validation
--  validates :exam_id,
-    uniqueness: {
-      message: "exam_number, type_numberが同じ組み合わせのレコードが既に存在します。",
-      scope: [:exam_number, :type_number]
-    }
+-  validates :org_siken_id, uniqueness: true
 
 #### Index
-- add_index :gakka_passed_numbers,  [:exam_id, :exam_number, :type_number], unique: true, name: 'gakka_passed_numbers_index'
+- add_index :gakka_passed_numbers, :org_siken_id, unique: true
 
 <br>
 <br>
@@ -392,7 +390,8 @@
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|exam_id|string|:exam, null: false, foreign_key: true||
+|siken_id|string|null: false||
+|org_siken_id|string|:exam, null: false, foreign_key: true|試験IDの末桁にtype_numberを追加したもの。一意なIDとなる|
 |exam_number|string||受験番号|
 |type_number|integer|null: false|一級: 0, 二級: 1, 特殊: 2, 湖川: 3|
 |created_at|datetime|
@@ -400,15 +399,11 @@
 
 
 #### Association
-- belongs_to :exam, primary_key: "exam_id", foreign_key: "exam_id"
->exam_idの共通したexamに従属する
+- belongs_to :exam, primary_key: "org_siken_id", foreign_key: "org_siken_id"
+>org_siken_idの共通したexamに従属する。データベース上ではforeign_keyにしていない（org_siken_idはstring型であり、int型でないと外部キー制約はできないため）
 
 #### Validation
--  validates :exam_id,
-    uniqueness: {
-      message: "exam_number, type_numberが同じ組み合わせのレコードが既に存在します。",
-      scope: [:exam_number, :type_number]
-    }
+-  validates :org_siken_id, uniqueness: true
 
 #### Index
-- add_index :jitugi_passed_numbers, [:exam_id, :exam_number, :type_number], unique: true, name: 'jitugi_passed_numbers_index'
+- add_index :jitugi_passed_numbers, :org_siken_id, unique: true

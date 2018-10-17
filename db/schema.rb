@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_095937) do
+ActiveRecord::Schema.define(version: 2018_10_17_102937) do
 
   create_table "boats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -50,12 +50,12 @@ ActiveRecord::Schema.define(version: 2018_10_17_095937) do
 
   create_table "gakka_passed_numbers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "siken_id"
-    t.string "exam_number"
+    t.string "org_siken_id"
     t.integer "type_number"
+    t.string "exam_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "org_siken_id"
-    t.index ["siken_id", "exam_number", "type_number"], name: "gakka_passed_numbers_index", unique: true
+    t.index ["org_siken_id"], name: "index_gakka_passed_numbers_on_org_siken_id", unique: true
   end
 
   create_table "holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -68,12 +68,12 @@ ActiveRecord::Schema.define(version: 2018_10_17_095937) do
 
   create_table "jitugi_passed_numbers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "siken_id"
-    t.string "exam_number"
+    t.string "org_siken_id"
     t.integer "type_number"
+    t.string "exam_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "org_siken_id"
-    t.index ["siken_id", "exam_number", "type_number"], name: "jitugi_passed_numbers_index", unique: true
+    t.index ["org_siken_id"], name: "index_jitugi_passed_numbers_on_org_siken_id", unique: true
   end
 
   create_table "lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

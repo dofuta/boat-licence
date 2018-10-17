@@ -100,7 +100,12 @@ class Scraping
           type_number = 2
         end
       end
-      puts "#試験ID#{siken_id}, #{type_number}の試験情報を取得します"
+
+      #siken_idとtype_numberを元にorg_siken_idを作成する
+      org_siken_id = siken_id.to_s + type_number.to_s
+      puts org_siken_id
+      puts "試験ID: #{siken_id}, type_number: #{type_number}, org_siken_id: #{org_siken_id} の試験情報を取得します"
+
       exam_number_table = driver.find_element(:css, "body > center > table:nth-child(3) > tbody")
       exam_number_line  = exam_number_table.find_elements(:tag_name, "tr")
       exam_number_line.each do |line|
@@ -112,7 +117,7 @@ class Scraping
           # numが"以下余白"や"該当者なし"でなければ、
           if exam_number != "以下余白" && exam_number != "該当者なし" && exam_number != ""
             # PassedNumberのインスタンスを生成する
-            GakkaPassedNumber.create(exam_number: exam_number, type_number: type_number, exam_id: siken_id)
+            GakkaPassedNumber.create(exam_number: exam_number, type_number: type_number, siken_id: siken_id, org_siken_id: org_siken_id)
             puts "受験番号 #{exam_number} のインスタンスを生成しました"
           end
         end
@@ -196,6 +201,7 @@ class Scraping
       # 取り出したtextの中の数字だけ取り出す
       siken_id = siken_id.match(/[0-9]{6}/)
       puts "試験ID #{siken_id} を取得しました"
+
       # 試験種別の要素の取得
       type_number = driver.find_element(:css, "body > center > table:nth-child(1) > tbody > tr:nth-child(1) > td > font > b")
       type_number = type_number.text
@@ -217,7 +223,10 @@ class Scraping
           type_number = 2
         end
       end
-      puts "試験ID#{siken_id}, #{type_number}の試験情報を取得します"
+      #siken_idとtype_numberを元にorg_siken_idを作成する
+      org_siken_id = siken_id.to_s + type_number.to_s
+      puts org_siken_id
+      puts "試験ID: #{siken_id}, type_number: #{type_number}, org_siken_id: #{org_siken_id} の試験情報を取得します"
 
       # 要素の取得
       exam_number_table = driver.find_element(:css, "body > center > table:nth-child(3) > tbody")
@@ -231,7 +240,7 @@ class Scraping
           # numが"以下余白"や"該当者なし"でなければ、
           if exam_number != "以下余白" && exam_number != "該当者なし" && exam_number != ""
             # PassedNumberのインスタンスを生成する
-            JitugiPassedNumber.create(exam_number: exam_number, type_number: type_number, exam_id: siken_id)
+            JitugiPassedNumber.create(exam_number: exam_number, type_number: type_number, siken_id: siken_id, org_siken_id: org_siken_id)
             puts "受験番号 #{exam_number} のインスタンスを生成しました"
           end
         end

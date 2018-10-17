@@ -1,7 +1,4 @@
 class JitugiPassedNumber < ApplicationRecord
-  validates :exam_id,
-    uniqueness: {
-      message: ", exam_number, type_numberが同じ組み合わせのレコードが既に存在します。",
-      scope: [:exam_number, :type_number]
-    }
+  validates :siken_id, uniqueness: true
+  belongs_to :exam, primary_key: "org_siken_id", foreign_key: "org_siken_id"
 end
