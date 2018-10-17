@@ -381,6 +381,9 @@
       scope: [:exam_number, :type_number]
     }
 
+#### Index
+- add_index :gakka_passed_numbers,  [:exam_id, :exam_number, :type_number], unique: true, name: 'gakka_passed_numbers_index'
+
 <br>
 <br>
 
@@ -406,3 +409,6 @@
       message: "exam_number, type_numberが同じ組み合わせのレコードが既に存在します。",
       scope: [:exam_number, :type_number]
     }
+
+#### Index
+- add_index :jitugi_passed_numbers, [:exam_id, :exam_number, :type_number], unique: true, name: 'jitugi_passed_numbers_index'
