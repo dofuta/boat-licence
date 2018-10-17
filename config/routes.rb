@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   # calendars_controller
   get 'calendar/:current_date/:next_or_ago/', to: 'calendars#index', as: 'calendar'
-  resources :daydetails, only: [:create, :update]
+  post  'day_details/:current_date',    to: 'day_details#create', as: 'day_details'
+  patch 'day_detail/:id/:current_date', to: 'day_details#update', as: 'day_detail'
 
 end

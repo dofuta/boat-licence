@@ -4,10 +4,11 @@
       =day[:date].day
       =day_of_the_week(day[:date])
     .Date__TopRemark
-    -if day[:daydetail].id
-      =form_with(model: day[:daydetail], url: daydetail_path(day[:daydetail].id), method: :patch , id: "day_detail#{day[:daydetail].id}") do |f|
+    -if day[:day_detail].id
+      =form_with(model: day[:day_detail], url: day_detail_path(day[:day_detail].id), method: :patch , id: "day_detail#{day[:day_detail].id}") do |f|
         =f.label :remark, "備考"
         =f.text_area :remark
+        =f.hidden_field :date, value: day[:date]
         =f.submit :更新
       .Date__TopDetail
         .Date__TopDetailBoatStauts
@@ -41,9 +42,10 @@
             -lesson.users.each do |user|
               =user.name
     -else
-      =form_for day[:daydetail], url: daydetails_path do |f|
+      =form_with model: day[:day_detail], url: day_details_path() do |f|
         =f.label :remark, "備考"
         =f.text_area :remark
+        =f.hidden_field :date, value: day[:date]
         =f.submit :更新
       .Date__TopDetail
         .Date__TopDetailBoatStauts

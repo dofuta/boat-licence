@@ -16,10 +16,10 @@ class CalendarsController < ApplicationController
     for i in 0..last_day do
       date   = beginning_of_month + i.day
       # 各日のremarkを取得する
-      daydetail = DayDetail.find_by(date: date) ? DayDetail.find_by(date: date) : DayDetail.new(date: date)
+      day_detail = DayDetail.find_by(date: date) ? DayDetail.find_by(date: date) : DayDetail.new(date: date)
       # 各講習の情報を、ユーザー情報を含めてとってくる
       day = {date:      date,
-            daydetail:  daydetail,
+            day_detail:  day_detail,
             jitugi:     Lesson.where(type_number: 0).where(date: date).includes(:users),
             syokyuu:    Lesson.where(type_number: 1).where(date: date).includes(:users),
             joukyuu:    Lesson.where(type_number: 2).where(date: date).includes(:users),
