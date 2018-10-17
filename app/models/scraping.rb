@@ -115,7 +115,7 @@ class Scraping
           # textを取り出す
           exam_number = exam_number.text
           # numが"以下余白"や"該当者なし"でなければ、
-          if exam_number != "以下余白" && exam_number != "該当者なし" && exam_number != ""
+          if exam_number != "以下余白"  && exam_number != "" # "該当者なし"はあえて受け入れることで、発表があったのに合格者がいない（つまり不合格）の判定に利用する
             # PassedNumberのインスタンスを生成する
             GakkaPassedNumber.create(exam_number: exam_number, type_number: type_number, siken_id: siken_id, org_siken_id: org_siken_id)
             puts "受験番号 #{exam_number} のインスタンスを生成しました"
@@ -238,7 +238,7 @@ class Scraping
           # textを取り出す
           exam_number = exam_number.text
           # numが"以下余白"や"該当者なし"でなければ、
-          if exam_number != "以下余白" && exam_number != "該当者なし" && exam_number != ""
+          if exam_number != "以下余白"  && exam_number != "" # "該当者なし"はあえて受け入れることで、発表があったのに合格者がいない（つまり不合格）の判定に利用する
             # PassedNumberのインスタンスを生成する
             JitugiPassedNumber.create(exam_number: exam_number, type_number: type_number, siken_id: siken_id, org_siken_id: org_siken_id)
             puts "受験番号 #{exam_number} のインスタンスを生成しました"
