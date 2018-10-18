@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_102937) do
+ActiveRecord::Schema.define(version: 2018_10_18_050744) do
 
   create_table "boats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_102937) do
 
   create_table "gakka_passed_numbers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "siken_id"
-    t.string "org_siken_id"
+    t.string "org_siken_id", null: false
     t.integer "type_number"
     t.string "exam_number"
     t.datetime "created_at", null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_102937) do
 
   create_table "jitugi_passed_numbers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "siken_id"
-    t.string "org_siken_id"
+    t.string "org_siken_id", null: false
     t.integer "type_number"
     t.string "exam_number"
     t.datetime "created_at", null: false
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 2018_10_17_102937) do
     t.datetime "updated_at", null: false
     t.bigint "place_id"
     t.text "remark"
+    t.bigint "boat_id"
+    t.index ["boat_id"], name: "index_lessons_on_boat_id"
     t.index ["place_id"], name: "index_lessons_on_place_id"
     t.index ["user_id"], name: "index_lessons_on_user_id"
   end
