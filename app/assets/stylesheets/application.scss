@@ -32,6 +32,12 @@
 // user_owned_exams_controller
 @import "./user_owned_exams/user_owned_exam";
 
+// calendars_controller
+@import "./calendars/index";
+
+// day_details_controller
+@import "./day_details/day";
+
 //
 // shadow
 @import "./shadow";

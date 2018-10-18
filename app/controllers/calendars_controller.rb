@@ -18,13 +18,26 @@ class CalendarsController < ApplicationController
       # 各日のremarkを取得する
       day_detail = DayDetail.find_by(date: date) ? DayDetail.find_by(date: date) : DayDetail.new(date: date)
       # 各講習の情報を、ユーザー情報を含めてとってくる
+      jitugi  = Lesson.where(type_number: 0).where(date: date).includes(:users)
+      syokyuu = Lesson.where(type_number: 1).where(date: date).includes(:users)
+      joukyuu = Lesson.where(type_number: 2).where(date: date).includes(:users)
+      tokusyu = Lesson.where(type_number: 3).where(date: date).includes(:users)
+      kosen   = Lesson.where(type_number: 3).where(date: date).includes(:users)
+      # 講習の情報をまとめる
+      lessons = jitugi + syokyuu + joukyuu + tokusyu + kosen
+      # boatを１つのリストにまとめる
+      boat_list = []
+      lessons.each do |lesson|
+        boat_list << lesson.boat.id
+      end
       day = {date:      date,
-            day_detail:  day_detail,
-            jitugi:     Lesson.where(type_number: 0).where(date: date).includes(:users),
-            syokyuu:    Lesson.where(type_number: 1).where(date: date).includes(:users),
-            joukyuu:    Lesson.where(type_number: 2).where(date: date).includes(:users),
-            tokusyu:    Lesson.where(type_number: 3).where(date: date).includes(:users),
-            kosen:      Lesson.where(type_number: 3).where(date: date).includes(:users),
+            day_detail: day_detail,
+            boat_list:  boat_list,
+            jitugi:     jitugi,
+            syokyuu:    syokyuu,
+            joukyuu:    joukyuu,
+            tokusyu:    tokusyu,
+            kosen:      kosen
             }
       @days << day
     end
