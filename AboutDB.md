@@ -202,6 +202,9 @@
 - belongs_to :place
 > lesson_placeを１つ持つ
 
+- belongs_to :boat
+> boatを１つもつ
+
 - has_many :user_owned_lessons
 > user_owned_lessonを複数持つ
 
