@@ -35,10 +35,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def set_page_name(page_name)
-    @page = page_name
-  end
-
+  
   def user_params
     params.require(:user).permit(:email, :name, :name_furigana, :former_name, :former_name_furigana, :gender, :birth, :nationality, :permanent_address, :former_permanent_address, :license_number, :license_expiration_date, :license_status, :phone_number, :phone_number2, :postal_code, :address, :postal_code2, :address2, :remark)
   end
