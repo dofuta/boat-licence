@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_18_050744) do
+ActiveRecord::Schema.define(version: 2018_10_22_091108) do
 
   create_table "boats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 2018_10_18_050744) do
   end
 
   create_table "lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
     t.integer "type_number", null: false
     t.date "date", null: false
     t.text "gg_event_id"
@@ -88,7 +87,6 @@ ActiveRecord::Schema.define(version: 2018_10_18_050744) do
     t.bigint "boat_id"
     t.index ["boat_id"], name: "index_lessons_on_boat_id"
     t.index ["place_id"], name: "index_lessons_on_place_id"
-    t.index ["user_id"], name: "index_lessons_on_user_id"
   end
 
   create_table "places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

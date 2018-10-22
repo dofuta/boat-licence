@@ -189,7 +189,6 @@
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|user_id|references|:user, foreign_key: true|担当する講師のid|
 |place_id|references|:place, foreign_key: true||
 |type_number|integer|null: false|実技: 0, 初級: 1, 上級: 2, 特殊: 3, 湖川: 4|
 |date|date|null: false|日付|
