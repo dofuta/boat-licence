@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user
     else
+      flash.delete(:notice)
       flash[:alert] = "更新できませんでした"
     end
   end
