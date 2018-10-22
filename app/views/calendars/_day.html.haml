@@ -2,7 +2,8 @@
   .Date__Top
     .Date__TopDay
       =day[:date].day
-      =day_of_the_week(day[:date])
+      %p.Date__TopDay--day_of_the_week
+        =day_of_the_week(day[:date])
     .Date__TopRemark
     -if day[:day_detail].id
       =form_with(model: day[:day_detail], url: day_detail_path(day[:day_detail].id), method: :patch , id: "day_detail#{day[:day_detail].id}") do |f|

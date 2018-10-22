@@ -1,5 +1,7 @@
 class CalendarsController < ApplicationController
   def index
+    # ナブバーのタイトル設定
+    set_page_name("カレンダー")
     # 今日の日付を取得する
     @today = Date.today
     # params[:current_date]に値があればそれを採用、なければ今日の月をcurrent_dateに採用する
@@ -32,7 +34,7 @@ class CalendarsController < ApplicationController
       end
       day = {date:      date,
             day_detail: day_detail,
-            boat_list:  boat_list,
+            boat_list:  boat_list.empty? ? nil : boat_list,
             jitugi:     jitugi,
             syokyuu:    syokyuu,
             joukyuu:    joukyuu,
