@@ -20,23 +20,15 @@ class CalendarsController < ApplicationController
       # 祝日かどうかの真偽値
       holiday = date.holiday?
       # 土曜か日曜（数字だとcssのidに指定できないから）
-      sun_or_sat =
-        case date.wday
-        when 0
-          "sun"
-        when 6
-          "sat"
-        else
-          ""
-        end
+      sun_or_sat = date.sun_or_sat?
       # 各日のremarkを取得する
       day_detail = DayDetail.find_by(date: date) ? DayDetail.find_by(date: date) : DayDetail.new(date: date)
       # 各講習の情報を、ユーザー情報を含めてとってくる
-      jitugi  = Lesson.where(type_number: 0).where(date: date).includes(:users)
-      syokyuu = Lesson.where(type_number: 1).where(date: date).includes(:users)
-      joukyuu = Lesson.where(type_number: 2).where(date: date).includes(:users)
-      tokusyu = Lesson.where(type_number: 3).where(date: date).includes(:users)
-      kosen   = Lesson.where(type_number: 3).where(date: date).includes(:users)
+      jitugi  = date.jitugi
+      syokyuu = date.syokyuu
+      joukyuu = date.joukyuu
+      tokusyu = date.tokusyu
+      kosen   = date.kosen
       # 講習の情報をまとめる
       lessons = jitugi + syokyuu + joukyuu + tokusyu + kosen
       # boatを１つのリストにまとめる
