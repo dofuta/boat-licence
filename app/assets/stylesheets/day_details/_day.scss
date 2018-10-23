@@ -1,20 +1,118 @@
+
+
 .Date{
-  &__Top{
-    &Day{
-
+  float: left;
+  border: 2px solid $gray3;
+  border-width: 2px 1px;
+  height: 678px;
+  width: calc(14.28vw - 2px);
+  &__Day{
+    border: 1px solid $gray3;
+    padding-top: 5px;
+    height: 35px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: $gray5;
+    // 日曜日
+    &--day_of_the_week{
+      &0{ color: $red2; }
+    // 土曜日
+      &6{ color: $deepblue2; }
     }
-    &Remark{
-
+  }
+  &__Remark{
+    height: 180px;
+    textarea{
+      border: 1px solid $gray3;
+      border-width: 2px 1px;
+      height: 150px;
+      width: calc(100% - 6px);
+      font-size: 20px;
     }
-    &Detail{
-      &BoatStatus{
-        &1{
-
+    input{
+      height: 10px;
+    }
+  }
+  &__Detail{
+    border: 1px solid $gray3;
+    height: 50px;
+    &BoatStatus{}
+  }
+  &__Lessons{
+    font-size: 25px;
+    &Group1{
+      &Syokyuu{
+        float: left;
+        border: 1px solid $gray3;
+        height: 200px;
+        width: calc(50% - 2px);
+        overflow: scroll;
+        &--lesson_type{
+          @extend %calendar_lesson_type_base;
+          background-color: $lightblue1;
         }
-        &2{
-
+        &--teachers{
+          font-size: 18px;
         }
-
+        &--username{
+          @extend %calendar_username_base;
+        }
+      }
+      &Joukyuu{
+        float: left;
+        border: 1px solid $gray3;
+        height: 200px;
+        width: calc(50% - 2px);
+        overflow: scroll;
+        &--lesson_type{
+          @extend %calendar_lesson_type_base;
+          background-color: $deepblue1;
+        }
+        &--teachers{
+          font-size: 18px;
+        }
+        &--username{
+          @extend %calendar_username_base;
+        }
+      }
+    }
+    &Group2{
+      &Jitugi{
+        float: left;
+        border: 1px solid $gray3;
+        border-width: 1px 1px 0 1px;
+        height: 200px;
+        width: calc(50% - 2px);
+        overflow: scroll;
+        &--lesson_type{
+          @extend %calendar_lesson_type_base;
+          background-color: $red2;
+        }
+        &--teachers{
+          font-size: 18px;
+        }
+        &--username{
+          @extend %calendar_username_base;
+        }
+      }
+      &Tokusyu{
+        float: left;
+        border: 1px solid $gray3;
+        border-width: 1px 1px 0 1px;
+        height: 200px;
+        width: calc(50% - 2px);
+        overflow: scroll;
+        &--lesson_type{
+          @extend %calendar_lesson_type_base;
+          background-color: $yellow2;
+        }
+        &--teachers{
+          font-size: 18px;
+        }
+        &--username{
+          @extend %calendar_username_base;
+        }
       }
     }
   }

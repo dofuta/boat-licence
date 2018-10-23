@@ -1,30 +1,31 @@
 .Navbar
-  .Navbar__Info
-    .Navbar__InfoCurrentPage
-      =@page
-  .Navbar__Group1
-    =link_to "個人", users_path, class:"Navbar__Group1Kojin"
-  .Navbar__Group2
-    =link_to "カレンダー", calendar_path(Date.today, 0), class:"Navbar__Group2Calendar"
-  .Navbar__Group3
-    .Navbar__Group3LessonSyokyuu
-      初級
-    .Navbar__Group3LessonJoukyuu
-      上級
-    .Navbar__Group3LessonJitugi
-      実技
-    .Navbar__Group3LessonTokusyu
-      特殊
-  .Navbar__Group4
-    .Navbar__Group4Exam12kyuu
-      1・2級
-      %br
-      試験
-    .Navbar__Group4ExamTokusyu
-      特殊試験
-  .Navbar__Group5
-    .Navbar__Group5RxLessonKousin
-      更新
-    .Navbar__Group5RxLessonSikkou
-      失効
+  .Navbar__Main
+    .Navbar__MainInfo
+      .Navbar__MainInfoCurrentPage
+        =@page
+    .Navbar__MainGroup1
+      =link_to "個人", users_path, class:"Navbar__MainGroup1Kojin"
+    .Navbar__MainGroup2
+      =link_to "カレンダー", calendar_path(Date.today, 0), class:"Navbar__MainGroup2Calendar"
+    .Navbar__MainGroup3
+      .Navbar__MainGroup3LessonSyokyuu
+        初級
+      .Navbar__MainGroup3LessonJoukyuu
+        上級
+      .Navbar__MainGroup3LessonJitugi
+        実技
+      .Navbar__MainGroup3LessonTokusyu
+        特殊
+    .Navbar__MainGroup4
+      .Navbar__MainGroup4Exam12kyuu
+        1・2級
+        %br
+        試験
+      .Navbar__MainGroup4ExamTokusyu
+        特殊試験
+    .Navbar__MainGroup5
+      .Navbar__MainGroup5RxLessonKousin
+        更新
+      .Navbar__MainGroup5RxLessonSikkou
+        失効
   =render partial: "shared/flash_message"

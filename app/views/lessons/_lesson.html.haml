@@ -10,7 +10,7 @@
     .Lesson__Group2
       .Lesson__Group2Place
         %label 会場名
-        =lesson.place.facility_name
+        =lesson.place.facility_name if lesson.place
       .Lesson__Group2GGEvent
         %label Googleカレンダー
         =gg_event?(lesson.gg_event_id)
@@ -33,7 +33,7 @@
     .Lesson__Group2
       .Lesson__Group2Place
         %label 会場名
-        =lesson.place.facility_name
+        =lesson.place.facility_name if lesson.place
       .Lesson__Group2GGEvent
         %label Googleカレンダー
         =gg_event?(lesson.gg_event_id)

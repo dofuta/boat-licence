@@ -38,68 +38,71 @@
   top: 0;
   left: 0;
   width: 100vw;
-  display: inline-block;
   background-color: $gray1;
-  &__Info{
-    @extend %Group_base;
-    &CurrentPage{
-      @extend %Button_base;
+  overflow-x: auto;
+  &__Main{
+    width: 3000px;
+    &Info{
+      @extend %Group_base;
+      &CurrentPage{
+        @extend %Button_base;
+      }
     }
-  }
-  &__Group1{
-    @extend %Group_base;
-    &Kojin{
-      @extend %Button_base;
-      background-color: $gray2;
+    &Group1{
+      @extend %Group_base;
+      &Kojin{
+        @extend %Button_base;
+        background-color: $gray2;
+      }
     }
-  }
-  &__Group2{
-    @extend %Group_base;
-    &Calendar{
-      @extend %Button_base;
-      background-color: $gray2;
+    &Group2{
+      @extend %Group_base;
+      &Calendar{
+        @extend %Button_base;
+        background-color: $gray2;
+      }
     }
-  }
-  &__Group3{
-    @extend %Group_base;
-    &LessonSyokyuu{
-      @extend %Button_base;
-      background-color: $lightblue1;
+    &Group3{
+      @extend %Group_base;
+      &LessonSyokyuu{
+        @extend %Button_base;
+        background-color: $lightblue1;
+      }
+      &LessonJoukyuu{
+        @extend %Button_base;
+        background-color: $deepblue1;
+      }
+      &LessonJitugi{
+        @extend %Button_base;
+        background-color: $red2;
+        float: left;
+      }
+      &LessonTokusyu{
+        @extend %Button_base;
+        background-color: $yellow1;
+      }
     }
-    &LessonJoukyuu{
-      @extend %Button_base;
-      background-color: $deapblue1;
+    &Group4{
+      @extend %Group_base;
+      &Exam12kyuu{
+        @extend %Button_base;
+        background-color: $gray2;
+      }
+      &ExamTokusyu{
+        @extend %Button_base;
+        background-color: $gray2;
+      }
     }
-    &LessonJitugi{
-      @extend %Button_base;
-      background-color: $red2;
-      float: left;
-    }
-    &LessonTokusyu{
-      @extend %Button_base;
-      background-color: $yellow1;
-    }
-  }
-  &__Group4{
-    @extend %Group_base;
-    &Exam12kyuu{
-      @extend %Button_base;
-      background-color: $gray2;
-    }
-    &ExamTokusyu{
-      @extend %Button_base;
-      background-color: $gray2;
-    }
-  }
-  &__Group5{
-    @extend %Group_base;
-    &RxLessonKousin{
-      @extend %Button_base;
-      background-color: $gray2;
-    }
-    &RxLessonSikkou{
-      @extend %Button_base;
-      background-color: $gray2;
+    &Group5{
+      @extend %Group_base;
+      &RxLessonKousin{
+        @extend %Button_base;
+        background-color: $gray2;
+      }
+      &RxLessonSikkou{
+        @extend %Button_base;
+        background-color: $gray2;
+      }
     }
   }
 }

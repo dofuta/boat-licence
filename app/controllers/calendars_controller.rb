@@ -30,7 +30,9 @@ class CalendarsController < ApplicationController
       # boatを１つのリストにまとめる
       boat_list = []
       lessons.each do |lesson|
-        boat_list << lesson.boat.id
+        if lesson.boat
+          boat_list << lesson.boat.id
+        end
       end
       day = {date:      date,
             day_detail: day_detail,
