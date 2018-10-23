@@ -3,6 +3,9 @@
     .Navbar__MainInfo
       .Navbar__MainInfoCurrentPage
         =@page
+        -if controller.controller_name == "calendars"
+          =link_to "<", calendar_path(@current_date, "prev")
+          =link_to ">", calendar_path(@current_date, "next")
     .Navbar__MainGroup1
       =link_to "個人", users_path, class:"Navbar__MainGroup1Kojin"
     .Navbar__MainGroup2
