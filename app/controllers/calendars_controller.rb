@@ -1,17 +1,34 @@
 class CalendarsController < ApplicationController
   def index
-    # ナブバーのタイトル設定
-    set_page_name("カレンダー")
     # 今日の日付を取得する
     @today = Date.today
     # params[:current_date]に値があればそれを採用、なければ今日の月をcurrent_dateに採用する
     @current_date = params[:current_date] != nil ? params[:current_date].to_date : @today
     # 翌月、前月のボタンに合わせてcurrent_dateを更新する
     @current_date = updated_month(@current_date)
+    # ナブバーのタイトル設定
+    set_page_name(@current_date.month.to_s + "月")
     # 1ヶ月の日付の配列
     @days = []
     # 1日めの日付
     beginning_of_month = @current_date.beginning_of_month
+
+    empty_date_length  = (beginning_of_month.wday - 1 >= 0) ? beginning_of_month.wday - 1 : 6
+    i = 0
+    while i < empty_date_length do
+      @days <<    {date:      nil,
+                  holiday:    "",
+                  sun_or_sat: "",
+                  day_detail: DayDetail.new(id:1),
+                  boat_list:  "",
+                  jitugi:     [],
+                  syokyuu:    [],
+                  joukyuu:    [],
+                  tokusyu:    [],
+                  kosen:      []
+                  }
+      i += 1
+    end
     # 月の終わりの日付の日のみ（つまり数字）
     last_day = @current_date.end_of_month.day - 1
     # 配列に日付を一日ずつ入れる

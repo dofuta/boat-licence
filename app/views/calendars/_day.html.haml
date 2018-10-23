@@ -1,84 +1,52 @@
 .Date
   .Date__Day
-    =day[:date].day
+    =day[:date].day if day[:date]
     %span{class: "Date__Day--day_of_the_week #{day[:holiday]}", id: "#{day[:sun_or_sat]}"}
-      =day_of_the_week(day[:date])
-  -if day[:day_detail].id
-    .Date__Remark
-      =form_with(model: day[:day_detail], url: day_detail_path(day[:day_detail].id), method: :patch , id: "day_detail#{day[:day_detail].id}") do |f|
-        =f.text_area :remark
-        =f.hidden_field :date, value: day[:date]
-        =f.submit :更新
-    .Date__Detail
-      .Date__DetailBoatStauts
-        =day[:boat_list]
-    .Date__Lessons
-      .Date__LessonsGroup1
-        .Date__LessonsGroup1Syokyuu
-          -day[:syokyuu].each do |lesson|
-            %p.Date__LessonsGroup1Syokyuu--lesson_type
-              =lesson_type(lesson.type_number)
-            %p.Date__LessonsGroup1Syokyuu--teachers
-              =lesson.teachers.map{|teacher| teacher.name}.join(", ")
+      =day_of_the_week(day[:date]) if day[:date]
+  .Date__Remark
+    = form_with_if_with_block day[:day_detail].id, day[:day_detail], "/day_detail/#{day[:day_detail].id}/#{@current_date}", :patch, "day_detail#{day[:day_detail].id}"  do |f|
+      =f.text_area :remark
+      =f.hidden_field :date, value: day[:date]
+      =f.submit :更新
+  .Date__Detail
+    .Date__DetailBoatStauts
+      =day[:boat_list]
+  .Date__Lessons
+    .Date__LessonsGroup1
+      .Date__LessonsGroup1Syokyuu
+        -day[:syokyuu].each do |lesson|
+          %p.Date__LessonsGroup1Syokyuu--lesson_type
+            =lesson_type(lesson.type_number)
+          %p.Date__LessonsGroup1Syokyuu--teachers
+            =lesson.teachers.map{|teacher| teacher.name}.join(", ")
+          -lesson.users.each do |user|
+            %p.Date__LessonsGroup1Syokyuu--username
+              =user.name
+      .Date__LessonsGroup1Joukyuu
+        -day[:joukyuu].each do |lesson|
+          %p.Date__LessonsGroup1Joukyuu--lesson_type
+            =lesson_type(lesson.type_number)
+          %p.Date__LessonsGroup1Joukyuu--teachers
+            =lesson.teachers.map{|teacher| teacher.name}.join(", ")
+          -lesson.users.each do |user|
+            %p.Date__LessonsGroup1Joukyuu--username
+              =user.name
+    .Date__LessonsGroup2
+      .Date__LessonsGroup2Tokusyu
+        -day[:tokusyu].each do |lesson|
+          %p.Date__LessonsGroup2Tokusyu--lesson_type
+            =lesson_type(lesson.type_number)
+          %p.Date__LessonsGroup2Tokusyu--teachers
+            =lesson.teachers.map{|teacher| teacher.name}.join(", ")
+          -lesson.users.each do |user|
+            %p.Date__LessonsGroup2Tokusyu--username
+              =user.name
+      .Date__LessonsGroup2Jitugi
+        -day[:jitugi].each do |lesson|
+          %p.Date__LessonsGroup2Jitugi--lesson_type
+            =lesson_type(lesson.type_number)
+          %p.Date__LessonsGroup2Jitugi--teachers
+            =lesson.teachers.map{|teacher| teacher.name}.join(", ")
             -lesson.users.each do |user|
-              %p.Date__LessonsGroup1Syokyuu--username
+              %p.Date__LessonsGroup2Jitugi--username
                 =user.name
-        .Date__LessonsGroup1Joukyuu
-          -day[:joukyuu].each do |lesson|
-            %p.Date__LessonsGroup1Joukyuu--lesson_type
-              =lesson_type(lesson.type_number)
-            %p.Date__LessonsGroup1Joukyuu--teachers
-              =lesson.teachers.map{|teacher| teacher.name}.join(", ")
-            -lesson.users.each do |user|
-              %p.Date__LessonsGroup1Joukyuu--username
-                =user.name
-      .Date__LessonsGroup2
-        .Date__LessonsGroup2Tokusyu
-          -day[:tokusyu].each do |lesson|
-            %p.Date__LessonsGroup2Tokusyu--lesson_type
-              =lesson_type(lesson.type_number)
-            %p.Date__LessonsGroup2Tokusyu--teachers
-              =lesson.teachers.map{|teacher| teacher.name}.join(", ")
-            -lesson.users.each do |user|
-              %p.Date__LessonsGroup2Tokusyu--username
-                =user.name
-        .Date__LessonsGroup2Jitugi
-          -day[:jitugi].each do |lesson|
-            %p.Date__LessonsGroup2Jitugi--lesson_type
-              =lesson_type(lesson.type_number)
-            %p.Date__LessonsGroup2Jitugi--teachers
-              =lesson.teachers.map{|teacher| teacher.name}.join(", ")
-              -lesson.users.each do |user|
-                %p.Date__LessonsGroup2Jitugi--username
-                  =user.name
-  -else
-    .Date__Remark
-      =form_with model: day[:day_detail], url: day_details_path() do |f|
-        =f.text_area :remark
-        =f.hidden_field :date, value: day[:date]
-        =f.submit :更新
-    .Date__Detail
-      .Date__DetailBoatStauts
-    .Date__Lessons
-      .Date__LessonsGroup1
-        .Date__LessonsGroup1Syokyuu
-          -day[:syokyuu].each do |lesson|
-            =lesson_type(lesson.type_number)
-            -lesson.users.each do |user|
-              =user.name
-        .Date__LessonsGroup1Joukyuu
-          -day[:joukyuu].each do |lesson|
-            =lesson_type(lesson.type_number)
-            -lesson.users.each do |user|
-              =user.name
-      .Date__LessonsGroup2
-        .Date__LessonsGroup2Tokusyu
-          -day[:tokusyu].each do |lesson|
-            =lesson_type(lesson.type_number)
-            -lesson.users.each do |user|
-              =user.name
-        .Date__LessonsGroup2Jitugi
-          -day[:jitugi].each do |lesson|
-            =lesson_type(lesson.type_number)
-            -lesson.users.each do |user|
-              =user.name

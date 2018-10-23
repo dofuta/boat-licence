@@ -45,7 +45,13 @@
     &Info{
       @extend %Group_base;
       &CurrentPage{
-        @extend %Button_base;
+        padding-top: 10px;
+        width:  150px;
+        height: 30px;
+        font-size: 30px;
+        font-weight: bold;
+        color: $gray4;
+        text-align: center;
       }
     }
     &Group1{

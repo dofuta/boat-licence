@@ -47,19 +47,19 @@ module ApplicationHelper
     end
   end
 
-  # 試験のタイプを文字に変換して表示するメソッド
-    def exam_type(type_number)
-      case type_number
-      when 0
-        "1・2級"
-      when 1
-        "特殊"
-      when 2
-        "湖川"
-      else
-        type_number
-      end
+# 試験のタイプを文字に変換して表示するメソッド
+  def exam_type(type_number)
+    case type_number
+    when 0
+      "1・2級"
+    when 1
+      "特殊"
+    when 2
+      "湖川"
+    else
+      type_number
     end
+  end
 
 # 時間を綺麗に表示するためのメソッド
   def simple_time(datetime)
@@ -76,6 +76,15 @@ module ApplicationHelper
       "登録済み"
     else
       "未登録"
+    end
+  end
+
+  # day_detailが存在するかどうかでform_withの記述を分ける（hamlだとif文が綺麗に書けないため）
+  def form_with_if_with_block(condition, model, url, method, id, &block)
+    if condition
+      form_with(model: model, url: url, method: method, id: id, &block)
+    else
+      form_with(model: model, url: day_details_path(), &block)
     end
   end
 
