@@ -1,7 +1,7 @@
 .Date
   .Date__Day
     =day[:date].day
-    %span{class: "Date__Day--day_of_the_week#{day[:date].wday}"}
+    %span{class: "Date__Day--day_of_the_week #{day[:holiday]}", id: "#{day[:sun_or_sat]}"}
       =day_of_the_week(day[:date])
   -if day[:day_detail].id
     .Date__Remark

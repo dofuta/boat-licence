@@ -17,6 +17,18 @@ class CalendarsController < ApplicationController
     # 配列に日付を一日ずつ入れる
     for i in 0..last_day do
       date   = beginning_of_month + i.day
+      # 祝日かどうかの真偽値
+      holiday = date.holiday?
+      # 土曜か日曜（数字だとcssのidに指定できないから）
+      sun_or_sat =
+        case date.wday
+        when 0
+          "sun"
+        when 6
+          "sat"
+        else
+          ""
+        end
       # 各日のremarkを取得する
       day_detail = DayDetail.find_by(date: date) ? DayDetail.find_by(date: date) : DayDetail.new(date: date)
       # 各講習の情報を、ユーザー情報を含めてとってくる
@@ -35,6 +47,8 @@ class CalendarsController < ApplicationController
         end
       end
       day = {date:      date,
+            holiday:    holiday,
+            sun_or_sat: sun_or_sat,
             day_detail: day_detail,
             boat_list:  boat_list.empty? ? nil : boat_list,
             jitugi:     jitugi,

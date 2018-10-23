@@ -15,11 +15,12 @@
     font-weight: bold;
     color: $gray5;
     // 日曜日
-    &--day_of_the_week{
-      &0{ color: $red2; }
+    &--day_of_the_week{&#sun{ color: $red2;}}
     // 土曜日
-      &6{ color: $deepblue2; }
-    }
+    &--day_of_the_week{&#sat{ color: $deepblue2; }}
+    // 祝日
+    &--day_of_the_week.hd{ color: $red2; }
+
   }
   &__Remark{
     height: 180px;
