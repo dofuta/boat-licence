@@ -1,5 +1,5 @@
-@import "./reset";
 @import "./variable";
+@import "./reset";
 @import "./navbar";
 @import "./content";
 // flash message
@@ -31,6 +31,13 @@
 
 // user_owned_exams_controller
 @import "./user_owned_exams/user_owned_exam";
+
+// calendars_controller
+@import "./calendars/index";
+@import "./calendars/boat";
+
+// day_details_controller
+@import "./day_details/day";
 
 //
 // shadow

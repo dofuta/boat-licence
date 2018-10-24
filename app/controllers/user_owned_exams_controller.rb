@@ -9,9 +9,11 @@ class UserOwnedExamsController < ApplicationController
     @user_owned_exam = UserOwnedExam.new(user_owned_exam_params)
     if @user_owned_exam.save
       redirect_to user_path(params[:user_id])
+      flash.delete(:notice)
       flash[:notice] = "講習に登録しました！"
     else
       redirect_to user_path(params[:user_id])
+      flash.delete(:notice)
       flash[:alert] = "登録できませんでした！"
     end
   end
@@ -21,6 +23,7 @@ class UserOwnedExamsController < ApplicationController
     if @user_owned_exam.update(user_owned_exam_params)
       render json: @user_owned_exam
     else
+      flash.delete(:notice)
       flash[:alert] = "更新できませんでした"
     end
   end

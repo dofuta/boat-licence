@@ -1,0 +1,13 @@
+.Boat{
+  float: left;
+  border-radius: 30px;
+  height: 40px;
+  width: 40px;
+  background-color: $gray3;
+  color: white;
+  // 中身の要素縦方向中央寄せ
+  display: flex;
+  align-items: center;
+  // 中身の要素横方向中央寄せ
+  justify-content: center;
+}

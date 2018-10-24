@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_28_083417) do
+ActiveRecord::Schema.define(version: 2018_10_24_060926) do
+
+  create_table "boats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.text "address"
+    t.text "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "day_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "date"
+    t.text "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "exams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "date", null: false
@@ -21,6 +36,8 @@ ActiveRecord::Schema.define(version: 2018_09_28_083417) do
     t.datetime "updated_at", null: false
     t.bigint "place_id"
     t.text "remark"
+    t.string "siken_id"
+    t.string "org_siken_id"
     t.index ["place_id"], name: "index_exams_on_place_id"
   end
 
@@ -31,6 +48,16 @@ ActiveRecord::Schema.define(version: 2018_09_28_083417) do
     t.index ["user_id", "friend_user_id"], name: "index_friendships_on_user_id_and_friend_user_id", unique: true
   end
 
+  create_table "gakka_passed_numbers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "siken_id"
+    t.string "org_siken_id", null: false
+    t.integer "type_number"
+    t.string "exam_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["org_siken_id"], name: "index_gakka_passed_numbers_on_org_siken_id", unique: true
+  end
+
   create_table "holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.date "date", null: false
@@ -39,8 +66,17 @@ ActiveRecord::Schema.define(version: 2018_09_28_083417) do
     t.index ["user_id"], name: "index_holidays_on_user_id"
   end
 
+  create_table "jitugi_passed_numbers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "siken_id"
+    t.string "org_siken_id", null: false
+    t.integer "type_number"
+    t.string "exam_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["org_siken_id"], name: "index_jitugi_passed_numbers_on_org_siken_id", unique: true
+  end
+
   create_table "lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
     t.integer "type_number", null: false
     t.date "date", null: false
     t.text "gg_event_id"
@@ -49,7 +85,15 @@ ActiveRecord::Schema.define(version: 2018_09_28_083417) do
     t.bigint "place_id"
     t.text "remark"
     t.index ["place_id"], name: "index_lessons_on_place_id"
-    t.index ["user_id"], name: "index_lessons_on_user_id"
+  end
+
+  create_table "lessons_boats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "lesson_id", null: false
+    t.bigint "boat_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boat_id"], name: "index_lessons_boats_on_boat_id"
+    t.index ["lesson_id"], name: "index_lessons_boats_on_lesson_id"
   end
 
   create_table "places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -10,9 +10,11 @@ class UserOwnedLessonsController < ApplicationController
     @user_owned_lesson = UserOwnedLesson.new(user_owned_lesson_params)
     if @user_owned_lesson.save
       redirect_to user_path(params[:user_id])
+      flash.delete(:notice)
       flash[:notice] = "講習に登録しました！"
     else
       redirect_to user_path(params[:user_id])
+      flash.delete(:notice)
       flash[:alert] = "登録できませんでした！"
     end
   end
@@ -22,6 +24,7 @@ class UserOwnedLessonsController < ApplicationController
     if @user_owned_lesson.update(user_owned_lesson_params)
       render json: @user_owned_lesson
     else
+      flash.delete(:notice)
       flash[:alert] = "更新できませんでした"
     end
   end

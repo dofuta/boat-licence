@@ -100,3 +100,31 @@ hr {
 input, select {
     vertical-align:middle;
 }
+
+textarea:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+}
+
+a {
+    color: $gray5;
+    text-decoration: none;
+}
+
+a:hover
+{
+     color: $gray4;
+     text-decoration:none;
+     cursor:pointer;
+}

@@ -1,6 +1,6 @@
 -if controller.action_name == "new" ##newアクションの場合
   .UserOwnedExam
-    =form_for(model: user_owned_exam, url: user_exam_user_owned_exams_path(params[:user_id], params[:exam_id]) ) do |f|
+    =form_for( user_owned_exam, url: user_exam_user_owned_exams_path(params[:user_id], params[:exam_id]) ) do |f|
       .UserOwnedExam__Group1
         .UserOwnedExam__Group1Payment
           =f.label :payment_confirmation, "入金"

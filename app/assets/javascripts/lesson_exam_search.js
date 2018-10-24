@@ -112,7 +112,7 @@ $(document).on('turbolinks:load', function() {
         var user_id = data["user_id"]
         // lessonsに値があれば
         if(lessons){
-          if(lesson.length !== 0) {
+          if(lessons.length !== 0) {
             // 各lessonのhtmlを作成、挿入する
             lessons.forEach(function(lesson){
               appendLesson(lesson);

@@ -189,7 +189,6 @@
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
-|user_id|references|:user, foreign_key: true|担当する講師のid|
 |place_id|references|:place, foreign_key: true||
 |type_number|integer|null: false|実技: 0, 初級: 1, 上級: 2, 特殊: 3, 湖川: 4|
 |date|date|null: false|日付|
@@ -201,6 +200,12 @@
 #### Association
 - belongs_to :place
 > lesson_placeを１つ持つ
+
+- has_many :boats, through: lessons_boats
+> lessons_boatsを介してboatsを複数もつ
+
+- has_many :lessons_boats
+> lessons_boatsを複数持つ
 
 - has_many :user_owned_lessons
 > user_owned_lessonを複数持つ
@@ -224,8 +229,10 @@
 |------|----  |-------                   |------       |
 |place_id|references|:place, foreign_key: true|
 |date|date|null: false|日付|
-|type_number|integer|null: false|一二級: 0, 特殊: 1|
+|type_number|integer|null: false|一級: 0, 二級: 1, 特殊: 2, 湖川: 3|
 |announcement_date|date|null: false|合格発表日|
+|siken_id|string||試験ID|
+|org_siken_id|string||試験IDの末桁にtype_numberを追加したもの。一意なIDとなる|
 |remark|text||備考|
 |gg_event_id|text||GoogleカレンダーのイベントID|
 
@@ -236,8 +243,15 @@
 - has_many :users, through: :user_owned_exams
 > userを通じてuser_owned_examを複数持つ
 
+- has_many :gakka_passed_numbers, primary_key: "org_siken_id", foreign_key: "org_siken_id"
+> org_siken_idの共通したgakka_passed_numbersを複数持つ
+
+- has_many :jitugi_passed_numbers, primary_key: "org_siken_id", foreign_key: "org_siken_id"
+> org_siken_idの共通したjitugi_passed_numbersを複数持つ
+
 - belongs_to :place
 > placeに従属する
+
 
 <br>
 <br>
@@ -293,9 +307,50 @@
 <br>
 <br>
 
+## boats table
+> boatモデルと結びつく
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|name|string|null: false|船舶名|
+|address|text|null: false|保管場所|
+|boat_image|text||船の画像|
+|created_at|datetime|
+|updated_at|datetime|
+
+#### Association
+- has_many :lessons, through: :lessons_boats
+> lessons_boatsを介してlessonを複数所有する
+
+- has_many  :lessons_boats
+> lessons_boatsを複数所有する
+
+<br>
+<br>
+
+## lessons_boats table
+> lessonsBoatモデルと結びつく
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|lesson_id|int|null: false|lessonのid|
+|boat_id|int|null: false|船のid|
+|created_at|datetime|
+|updated_at|datetime|
+
+#### Association
+- belongs_to :lesson
+> lessonに従属する
+
+- belongs_to :boat
+> boatsに従属する
+
+<br>
+<br>
+
 
 ## holidays table
-> holidayモデルと結びつく。holidayモデルは、講師の休みの日を保存するモデル。
+> Holidayモデルと結びつく。Holidayモデルは、講師の休みの日を保存するモデル。
 
 |Column|Type  |Options                   |Remark       |
 |------|----  |-------                   |------       |
@@ -308,3 +363,72 @@
 #### Association
 - belongs_to :user
 > userモデルに従属する
+
+<br>
+<br>
+
+## day_details table
+> DayDetailモデルと結びつく。DayDetailモデルは、カレンダーの各日の備考を保存するモデル。
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|date|date|null: false|日付|
+|remark|text||備考|
+|created_at|datetime|
+|updated_at|datetime|
+
+
+#### Association
+なし
+
+<br>
+<br>
+
+## gakka_passed_numbers table
+> GakkaPassedNumberモデルと結びつく。GakkaPassedNumberモデルは、スクレイピングで取得した合格者の受験番号を保存するモデル。
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|siken_id|string|null: false||
+|org_siken_id|string|:exam, null: false, foreign_key: true|試験IDの末桁にtype_numberを追加したもの。一意なIDとなる|
+|exam_number|string||受験番号|
+|type_number|integer|null: false|一級: 0, 二級: 1, 特殊: 2, 湖川: 3|
+|created_at|datetime|
+|updated_at|datetime|
+
+
+#### Association
+- belongs_to :exam, primary_key: "org_siken_id", foreign_key: "org_siken_id"
+>org_siken_idの共通したexamに従属する。データベース上ではforeign_keyにしていない（org_siken_idはstring型であり、int型でないと外部キー制約はできないため）
+
+#### Validation
+-  validates :org_siken_id, uniqueness: true
+
+#### Index
+- add_index :gakka_passed_numbers, :org_siken_id, unique: true
+
+<br>
+<br>
+
+## jitugi_passed_numbers table
+> JitugiPassedNumberモデルと結びつく。JitugiPassedNumberモデルは、スクレイピングで取得した合格者の受験番号を保存するモデル。
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|siken_id|string|null: false||
+|org_siken_id|string|:exam, null: false, foreign_key: true|試験IDの末桁にtype_numberを追加したもの。一意なIDとなる|
+|exam_number|string||受験番号|
+|type_number|integer|null: false|一級: 0, 二級: 1, 特殊: 2, 湖川: 3|
+|created_at|datetime|
+|updated_at|datetime|
+
+
+#### Association
+- belongs_to :exam, primary_key: "org_siken_id", foreign_key: "org_siken_id"
+>org_siken_idの共通したexamに従属する。データベース上ではforeign_keyにしていない（org_siken_idはstring型であり、int型でないと外部キー制約はできないため）
+
+#### Validation
+-  validates :org_siken_id, uniqueness: true
+
+#### Index
+- add_index :jitugi_passed_numbers, :org_siken_id, unique: true

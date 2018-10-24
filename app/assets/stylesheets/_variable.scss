@@ -7,10 +7,10 @@ $red1:       #f8c291;
 $red2:       #e55039;
 $red3:       #eb2f06;
 $red4:       #b71540;
-$deapblue1:  #6a89cc;
-$deapblue2:  #4a69bd;
-$deapblue3:  #1e3799;
-$deapblue4:  #0c2461;
+$deepblue1:  #6a89cc;
+$deepblue2:  #4a69bd;
+$deepblue3:  #1e3799;
+$deepblue4:  #0c2461;
 $lightblue1: #82ccdd;
 $lightblue2: #60a3bc;
 $lightblue3: #3c6382;
@@ -69,4 +69,19 @@ $gray5:      #2f3542;
 }
 %dropdown_base:after {
 
+}
+
+%calendar_username_base{
+  padding: 2px 0;
+  font-size: 25px;
+  // 複数行になるのを防ぐ
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+%calendar_lesson_type_base{
+  font-size: 25px;
+  color: white;
+  text-align: center;
 }

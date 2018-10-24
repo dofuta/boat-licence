@@ -1,3 +1,4 @@
+
 module ApplicationHelper
   def date_select_ja(src_html)
     dst_html = src_html.gsub(/>\d{4}</) do |m|
@@ -23,6 +24,11 @@ module ApplicationHelper
     dst_html.html_safe
   end
 
+# 曜日を日本語で返すメソッド
+  def day_of_the_week (date)
+    %w(日 月 火 水 木 金 土)[date.wday]
+  end
+
 # 講習のタイプを文字に変換して表示するメソッド
   def lesson_type(type_number)
     case type_number
@@ -41,19 +47,19 @@ module ApplicationHelper
     end
   end
 
-  # 試験のタイプを文字に変換して表示するメソッド
-    def exam_type(type_number)
-      case type_number
-      when 0
-        "1・2級"
-      when 1
-        "特殊"
-      when 2
-        "湖川"
-      else
-        type_number
-      end
+# 試験のタイプを文字に変換して表示するメソッド
+  def exam_type(type_number)
+    case type_number
+    when 0
+      "1・2級"
+    when 1
+      "特殊"
+    when 2
+      "湖川"
+    else
+      type_number
     end
+  end
 
 # 時間を綺麗に表示するためのメソッド
   def simple_time(datetime)
@@ -64,11 +70,25 @@ module ApplicationHelper
     date.strftime("%Y/%m/%d")
   end
 
+# googlecalendarに登録済みかどうかを日本語にして返すメソッド
   def gg_event?(gg_event_id)
     if gg_event_id
       "登録済み"
     else
       "未登録"
+    end
+  end
+
+  # day_detailが存在するかどうかでform_withの記述を分ける（hamlだとif文が綺麗に書けないため）
+  def form_with_if_with_block(condition, model, method, &block)
+    if condition
+      if condition.id
+        form_with(model: model, url: "/day_detail/#{model.id}/#{@current_date}", method: method, id: "day_detail#{model.id}", &block)
+      else
+        form_with(model: model, url: day_details_path(), &block)
+      end
+    else
+      return nil
     end
   end
 
