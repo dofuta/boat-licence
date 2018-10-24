@@ -1,5 +1,5 @@
 .Date
-  .Date__Day
+  .Date__Day{id: "#{day[:today?]}"}
     =day[:date].day if day[:date]
     %span{class: "Date__Day--day_of_the_week #{day[:holiday]}", id: "#{day[:sun_or_sat]}"}
       =day_of_the_week(day[:date]) if day[:date]
@@ -21,7 +21,7 @@
             =lesson.teachers.map{|teacher| teacher.name}.join(", ")
           -lesson.users.each do |user|
             %p.Date__LessonsGroup1Syokyuu--username
-              =user.name
+              =link_to "#{user.name}", user_path(user.id)
       .Date__LessonsGroup1Joukyuu
         -day[:joukyuu].each do |lesson|
           %p.Date__LessonsGroup1Joukyuu--lesson_type
@@ -30,7 +30,7 @@
             =lesson.teachers.map{|teacher| teacher.name}.join(", ")
           -lesson.users.each do |user|
             %p.Date__LessonsGroup1Joukyuu--username
-              =user.name
+              =link_to "#{user.name}", user_path(user.id)
     .Date__LessonsGroup2
       .Date__LessonsGroup2Tokusyu
         -day[:tokusyu].each do |lesson|
@@ -40,7 +40,7 @@
             =lesson.teachers.map{|teacher| teacher.name}.join(", ")
           -lesson.users.each do |user|
             %p.Date__LessonsGroup2Tokusyu--username
-              =user.name
+              =link_to "#{user.name}", user_path(user.id)
       .Date__LessonsGroup2Jitugi
         -day[:jitugi].each do |lesson|
           %p.Date__LessonsGroup2Jitugi--lesson_type
@@ -49,4 +49,4 @@
             =lesson.teachers.map{|teacher| teacher.name}.join(", ")
             -lesson.users.each do |user|
               %p.Date__LessonsGroup2Jitugi--username
-                =user.name
+                =link_to "#{user.name}", user_path(user.id)

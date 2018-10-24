@@ -116,3 +116,15 @@ label:focus,
     outline:0px !important;
     -webkit-appearance:none;
 }
+
+a {
+    color: $gray5;
+    text-decoration: none;
+}
+
+a:hover
+{
+     color: $gray4;
+     text-decoration:none;
+     cursor:pointer;
+}

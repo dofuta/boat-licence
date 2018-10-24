@@ -14,6 +14,8 @@
     font-size: 30px;
     font-weight: bold;
     color: $gray5;
+    // 今日
+    &#today{ background-color: $yellow1;}
     // 日曜日
     &--day_of_the_week{&#sun{ color: $red2;}}
     // 土曜日
