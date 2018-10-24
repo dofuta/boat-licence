@@ -20,6 +20,10 @@ class LessonsController < ApplicationController
     end
   end
 
+  def new
+    @lesson = Lesson.new
+  end
+
   def create
     Lesson.create()
   end
