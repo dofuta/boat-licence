@@ -201,8 +201,11 @@
 - belongs_to :place
 > lesson_placeを１つ持つ
 
-- belongs_to :boat
-> boatを１つもつ
+- has_many :boats, through: lessons_boats
+> lessons_boatsを介してboatsを複数もつ
+
+- has_many :lessons_boats
+> lessons_boatsを複数持つ
 
 - has_many :user_owned_lessons
 > user_owned_lessonを複数持つ
@@ -316,11 +319,31 @@
 |updated_at|datetime|
 
 #### Association
-- has_many :exams
-> examを所有する
+- has_many :lessons, through: :lessons_boats
+> lessons_boatsを介してlessonを複数所有する
 
-- has_many :lessons
-> lessonを所有する
+- has_many  :lessons_boats
+> lessons_boatsを複数所有する
+
+<br>
+<br>
+
+## lessons_boats table
+> lessonsBoatモデルと結びつく
+
+|Column|Type  |Options                   |Remark       |
+|------|----  |-------                   |------       |
+|lesson_id|int|null: false|lessonのid|
+|boat_id|int|null: false|船のid|
+|created_at|datetime|
+|updated_at|datetime|
+
+#### Association
+- belongs_to :lesson
+> lessonに従属する
+
+- belongs_to :boat
+> boatsに従属する
 
 <br>
 <br>

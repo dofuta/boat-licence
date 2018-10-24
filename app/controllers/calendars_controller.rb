@@ -51,8 +51,8 @@ class CalendarsController < ApplicationController
       # boatを１つのリストにまとめる
       boats = []
       lessons.each do |lesson|
-        if lesson.boat
-          boats << lesson.boat
+        if lesson.boats
+          boats += lesson.boats
         end
       end
       boats = boats.uniq
@@ -60,7 +60,7 @@ class CalendarsController < ApplicationController
             holiday:    holiday,
             sun_or_sat: sun_or_sat,
             day_detail: day_detail,
-            boats:  boats.empty? ? nil : boats,
+            boats:      boats.empty? ? nil : boats,
             jitugi:     jitugi,
             syokyuu:    syokyuu,
             joukyuu:    joukyuu,
