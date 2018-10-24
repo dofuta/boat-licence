@@ -38,7 +38,9 @@
   &__Detail{
     border: 1px solid $gray3;
     height: 50px;
-    &BoatStatus{}
+    overflow-x: auto;
+    &BoatList{
+    }
   }
   &__Lessons{
     font-size: 25px;

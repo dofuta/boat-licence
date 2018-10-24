@@ -9,8 +9,8 @@
       =f.hidden_field :date, value: day[:date]
       =f.submit :更新
   .Date__Detail
-    .Date__DetailBoatStauts
-      =day[:boat_list]
+    .Date__DetailBoatList
+      =render partial: "boat", collection: day[:boats]
   .Date__Lessons
     .Date__LessonsGroup1
       .Date__LessonsGroup1Syokyuu
