@@ -20,7 +20,7 @@ class CalendarsController < ApplicationController
                   holiday:    "",
                   sun_or_sat: "",
                   today?:     "",
-                  day_detail: DayDetail.new(id:1),
+                  day_detail: nil,
                   boat_list:  "",
                   jitugi:     [],
                   syokyuu:    [],
@@ -81,7 +81,7 @@ class CalendarsController < ApplicationController
   def updated_month(current_date)
     # 翌月、前月のボタンが押されていたら、params[:next_or_ago]に値が入るので、それに合わせて分岐
     current_date =
-    case params[:next_or_ago]
+    case params[:next_or_prev]
     when "prev"
       current_date.prev_month
     when "next"

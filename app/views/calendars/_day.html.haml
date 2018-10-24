@@ -4,7 +4,7 @@
     %span{class: "Date__Day--day_of_the_week #{day[:holiday]}", id: "#{day[:sun_or_sat]}"}
       =day_of_the_week(day[:date]) if day[:date]
   .Date__Remark
-    = form_with_if_with_block day[:day_detail].id, day[:day_detail], "/day_detail/#{day[:day_detail].id}/#{@current_date}", :patch, "day_detail#{day[:day_detail].id}"  do |f|
+    = form_with_if_with_block day[:day_detail], day[:day_detail], :patch do |f|
       =f.text_area :remark
       =f.hidden_field :date, value: day[:date]
       =f.submit :更新

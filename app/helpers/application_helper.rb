@@ -80,11 +80,15 @@ module ApplicationHelper
   end
 
   # day_detailが存在するかどうかでform_withの記述を分ける（hamlだとif文が綺麗に書けないため）
-  def form_with_if_with_block(condition, model, url, method, id, &block)
+  def form_with_if_with_block(condition, model, method, &block)
     if condition
-      form_with(model: model, url: url, method: method, id: id, &block)
+      if condition.id
+        form_with(model: model, url: "/day_detail/#{model.id}/#{@current_date}", method: method, id: "day_detail#{model.id}", &block)
+      else
+        form_with(model: model, url: day_details_path(), &block)
+      end
     else
-      form_with(model: model, url: day_details_path(), &block)
+      return nil
     end
   end
 
