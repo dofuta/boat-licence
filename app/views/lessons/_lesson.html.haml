@@ -1,4 +1,4 @@
--if controller.action_name == "new" || controller.action_name == "show" ##newアクションの場合(user_owned_lessons#new),showアクションの時（users#show）
+-if controller.action_name == "user_owned_lessons" && controller.action_name == "new" || controller.action_name == "show" ##newアクションの場合(user_owned_lessons#new),showアクションの時（users#show）
   .Lesson--withoutlink
     .Lesson__Group1
       .Lesson__Group1Type
@@ -21,7 +21,7 @@
       .Lesson__Group3Remark
         %label 備考
         =lesson.remark
--else                               ##それ以外？(lessons#index)の場合
+-elsif controller.controller_name == "lessons" && controller.action_name == "search"  ##(lessons#search)の場合
   %a.Lesson{href:"#{new_user_lesson_user_owned_lesson_path(params[:user_id], lesson.id)}"}
     .Lesson__Group1
       .Lesson__Group1Type
@@ -44,3 +44,59 @@
       .Lesson__Group3Remark
         %label 備考
         =lesson.remark
+- elsif controller.controller_name == "lessons" && controller.action_name == "index"  ##(lessons#index)の場合
+  %a.Lesson{href: "lessons/#{lesson.id}"}
+    .Lesson__Group1
+      .Lesson__Group1Type
+        %label 種類
+        =lesson_type(lesson.type_number)
+      .Lesson__Group1Date
+        %label 講習日
+        =simple_date(lesson.date)
+    .Lesson__Group2
+      .Lesson__Group2Place
+        %label 会場名
+        =lesson.place.facility_name if lesson.place
+      .Lesson__Group2GGEvent
+        %label Googleカレンダー
+        =gg_event?(lesson.gg_event_id)
+    .Lesson__Group3
+      .Lesson__Group3Teacher
+        %label 講師
+        =lesson.teachers.map{|teacher| teacher.name}.join(", ")
+      .Lesson__Group3Remark
+        %label 備考
+        =lesson.remark
+- else # lessons#new , lesson#edit の時
+  .Lesson
+    =form_for lesson do |f|
+      .Lesson__Group1
+        .Lesson__Group1Type
+          %label 種類
+          %select{id: "lesson_type_number", name: "lesson[type_number]"}
+            %option{value:""}
+            %option{value:"0"}実技
+            %option{value:"1"}初級
+            %option{value:"2"}上級
+            %option{value:"3"}特殊
+            %option{value:"4"}湖川
+        .Lesson__Group1Date
+          %label 講習日
+          %input{type:"date", name:"lesson[date]", max:"9999-12-31", id:"lesson_date"}
+      .Lesson__Group2
+        .Lesson__Group2Place
+          %label 会場名
+          = f.collection_select :place_id, places, :id, :facility_name, prompt: true, name: "lesson[place_id]"
+        .Lesson__Group2GGEvent
+          %label Googleカレンダー
+
+      .Lesson__Group3
+        .Lesson__Group3Teacher
+          %label 講師
+          =f.collection_select :teacher_ids, teachers, :id, :name, {:prompt => true}, {:multiple => true, :size => 5 }
+        .Lesson__Group3Remark
+          %label 備考
+          =f.text_area :remark
+      .Lesson__Group4
+        .Lesson__Group4Send
+          =f.submit :登録する

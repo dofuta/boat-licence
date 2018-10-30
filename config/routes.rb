@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
   resources :places,   only: [:index, :create, :edit, :update, :destroy]
-  resources :lessons,  only: [:index,:show]
+  resources :lessons,  only: [:index, :edit, :new, :create]
   resources :exams,    only: [:index]
 
   # calendars_controller
