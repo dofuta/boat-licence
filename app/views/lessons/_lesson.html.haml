@@ -1,4 +1,4 @@
--if controller.action_name == "user_owned_lessons" && controller.action_name == "new" || controller.action_name == "show" ##newアクションの場合(user_owned_lessons#new),showアクションの時（users#show）
+-if controller.controller_name == "user_owned_lessons" && controller.action_name == "new" || controller.action_name == "show" ##newアクションの場合(user_owned_lessons#new),showアクションの時（users#show）
   .Lesson--withoutlink
     .Lesson__Group1
       .Lesson__Group1Type
@@ -21,7 +21,7 @@
       .Lesson__Group3Remark
         %label 備考
         =lesson.remark
--elsif controller.controller_name == "lessons" && controller.action_name == "search"  ##(lessons#search)の場合
+-elsif controller.controller_name == "lessons" && controller.action_name == "index"  ##(lessons#index)の場合
   %a.Lesson{href:"#{new_user_lesson_user_owned_lesson_path(params[:user_id], lesson.id)}"}
     .Lesson__Group1
       .Lesson__Group1Type
@@ -44,7 +44,7 @@
       .Lesson__Group3Remark
         %label 備考
         =lesson.remark
-- elsif controller.controller_name == "lessons" && controller.action_name == "index"  ##(lessons#index)の場合
+- elsif controller.controller_name == "lessons" && controller.action_name == "search"  ##(lessons#search)の場合
   %a.Lesson{href: "lessons/#{lesson.id}"}
     .Lesson__Group1
       .Lesson__Group1Type

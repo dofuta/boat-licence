@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
 
-  def search
+  def index
     @lessons = Lesson.order(date: :desc).limit(20)
     #jbuilderを返す
     respond_to do |format|
@@ -39,7 +39,7 @@ class LessonsController < ApplicationController
     end
   end
 
-  def index
+  def search
     @lessons = Lesson.order(date: :desc).limit(20)
     #jbuilderを返す
     respond_to do |format|

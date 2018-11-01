@@ -1,3 +1,4 @@
+json.user_id @user_id
 json.lessons @lessons do |lesson|
   json.id       lesson.id
   json.type     lesson_type(lesson.type_number)
