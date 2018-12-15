@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
   // リスト表示する親要素
-  var search_list = $('.Search__List');
+  var search_list = $('.Search__List#index');
   // 各ユーザー表示のhtml作成の関数
   function appendLesson(lesson){
     var remark  = (lesson.remark) ? lesson.remark : "";
@@ -88,7 +88,7 @@ $(document).on('turbolinks:load', function() {
 
 
   // 検索窓に文字が打ち込まれた時
-  $('.Search__Submit input').on('click',function(e){
+  $('.Search__Submit#index input').on('click',function(e){
     // デフォルトの送信を止める
     e.preventDefault();
     // インプットされたユーザー検索文字列

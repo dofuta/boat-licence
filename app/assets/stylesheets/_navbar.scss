@@ -70,11 +70,11 @@
     }
     &Group3{
       @extend %Group_base;
-      &LessonSyokyuu{
+      &NewLesson{
         @extend %Button_base;
         background-color: $lightblue1;
       }
-      &LessonJoukyuu{
+      &LessonSearch{
         @extend %Button_base;
         background-color: $deepblue1;
       }

@@ -1,4 +1,4 @@
--if controller.action_name == "new" || controller.action_name == "show" ##newアクションの場合(user_owned_lessons#new),showアクションの時（users#show）
+-if controller.controller_name == "user_owned_lessons" && controller.action_name == "new" || controller.action_name == "show" ##newアクションの場合(user_owned_lessons#new),showアクションの時（users#show）
   .Lesson--withoutlink
     .Lesson__Group1
       .Lesson__Group1Type
@@ -7,6 +7,9 @@
       .Lesson__Group1Date
         %label 講習日
         =simple_date(lesson.date)
+      .Lesson__Group1Boat
+        %label 船
+        =lesson.boats.map{|boat| boat.name}.join(", ")
     .Lesson__Group2
       .Lesson__Group2Place
         %label 会場名
@@ -21,7 +24,7 @@
       .Lesson__Group3Remark
         %label 備考
         =lesson.remark
--else                               ##それ以外？(lessons#index)の場合
+-elsif controller.controller_name == "lessons" && controller.action_name == "index"  ##(lessons#index)の場合
   %a.Lesson{href:"#{new_user_lesson_user_owned_lesson_path(params[:user_id], lesson.id)}"}
     .Lesson__Group1
       .Lesson__Group1Type
@@ -30,6 +33,9 @@
       .Lesson__Group1Date
         %label 講習日
         =simple_date(lesson.date)
+      .Lesson__Group1Boat
+        %label 船
+        =lesson.boats.map{|boat| boat.name}.join(", ")
     .Lesson__Group2
       .Lesson__Group2Place
         %label 会場名
@@ -44,3 +50,68 @@
       .Lesson__Group3Remark
         %label 備考
         =lesson.remark
+- elsif controller.controller_name == "lessons" && controller.action_name == "search"  ##(lessons#search)の場合
+  %a.Lesson{href: "/lessons/#{lesson.id}/edit"}
+    .Lesson__Group1
+      .Lesson__Group1Type
+        %label 種類
+        =lesson_type(lesson.type_number)
+      .Lesson__Group1Date
+        %label 講習日
+        =simple_date(lesson.date)
+      .Lesson__Group1Boat
+        %label 船
+        =lesson.boats.map{|boat| boat.name}.join(", ")
+    .Lesson__Group2
+      .Lesson__Group2Place
+        %label 会場名
+        =lesson.place.facility_name if lesson.place
+      .Lesson__Group2GGEvent
+        %label Googleカレンダー
+        =gg_event?(lesson.gg_event_id)
+    .Lesson__Group3
+      .Lesson__Group3Teacher
+        %label 講師
+        =lesson.teachers.map{|teacher| teacher.name}.join(", ")
+      .Lesson__Group3Remark
+        %label 備考
+        =lesson.remark
+- elsif controller.controller_name == "lessons" && controller.action_name == "edit" # lessons#edit
+  .Lesson{style: "background-color: #f1f2f6;"}
+    =form_for lesson, :url => {:action => 'update'} do |f|
+      .Lesson__Group1
+        .Lesson__Group1Type
+          %label 種類
+          =f.select(:type_number, options_for_select([["実技", 0], ["初級", 1], ["上級", 2], ["特殊", 3], ["湖川", 4]], :selected => f.object.type_number), :include_blank => true)
+        .Lesson__Group1Date
+          %label 講習日
+          %input{type:"date", name:"lesson[date]", max:"9999-12-31", id:"lesson_date", value: "#{lesson.date}"}
+        .Lesson__Group1Boat
+          %label 船(shiftキーで複数選択)
+          =f.collection_select :boat_ids, boats, :id, :name, {:prompt => true}, {:multiple => true, :size => 5 }
+      .Lesson__Group2
+        .Lesson__Group2Place
+          %label 会場名
+          = f.collection_select :place_id, places, :id, :facility_name, prompt: true, name: "lesson[place_id]"
+        .Lesson__Group2GGEvent
+          %label Googleカレンダー
+      .Lesson__Group3
+        .Lesson__Group3Teacher
+          %label 講師
+          =f.collection_select :teacher_ids, teachers, :id, :name, {:prompt => true}, {:multiple => true, :size => 5 }
+        .Lesson__Group3Remark
+          %label 備考
+          =f.text_area :remark
+      .Lesson__Group4
+        .Lesson__Group4Submit
+          %br
+          -if @lesson.users[0]
+            %p 下記のユーザーがこの講習を登録しています。
+            -@lesson.users.each do |user|
+              %li
+                %a{href: "/users/#{user.id}"}
+                  =user.name
+                %br
+          -else
+            %p この講習に登録しているユーザーはいません。
+          =f.submit :更新する

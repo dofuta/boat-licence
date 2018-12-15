@@ -1,0 +1,14 @@
+.Boat
+  =form_with model: boat do |f|
+    .Boat__Top
+      =f.file_field :image
+    .Boat__Image
+      =image_tag(boat.image.url) if boat.image
+    .Boat__Name
+      =f.label :船の名称
+      =f.text_field :name
+    .Boat__Address
+      =f.label :保管場所
+      =f.text_area :address
+    .Boat__Submit
+      =f.submit :保存する

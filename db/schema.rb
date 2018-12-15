@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_060926) do
+ActiveRecord::Schema.define(version: 2018_12_03_082526) do
 
   create_table "boats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.text "address"
+    t.string "name", null: false
+    t.text "address", null: false
     t.text "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2018_10_24_060926) do
 
   create_table "exams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "date", null: false
-    t.integer "type_number", null: false
     t.date "announcement_date"
     t.text "gg_event_id"
     t.datetime "created_at", null: false
@@ -38,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_060926) do
     t.text "remark"
     t.string "siken_id"
     t.string "org_siken_id"
+    t.integer "type_number", null: false
     t.index ["place_id"], name: "index_exams_on_place_id"
   end
 
@@ -77,13 +77,13 @@ ActiveRecord::Schema.define(version: 2018_10_24_060926) do
   end
 
   create_table "lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "type_number", null: false
     t.date "date", null: false
     t.text "gg_event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "place_id"
     t.text "remark"
+    t.integer "type_number", null: false
     t.index ["place_id"], name: "index_lessons_on_place_id"
   end
 

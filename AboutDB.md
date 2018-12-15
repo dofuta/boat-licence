@@ -74,6 +74,10 @@
 - has_and_belongs_to_many :friendships, class_name: “User”, join_table: :friendships, foreign_key: :user_id, association_foreign_key: :friend_user_id
 > 友達をユーザーモデル内で定義（friendshipsテーブル（モデルなし）を別途作成、利用）
 
+
+#### Validation
+- validates  :name,      presence: true
+- validates  :email,     presence: true
 <br>
 <br>
 
@@ -219,6 +223,10 @@
 - has_many :teachers, through: :user_teaching_lessons, source: :users
 > user_teaching_lessonを通してuserを複数持つ
 
+#### Validation
+validates  :date,        presence: true
+validates  :type_number, presence: true
+
 <br>
 <br>
 
@@ -314,7 +322,7 @@
 |------|----  |-------                   |------       |
 |name|string|null: false|船舶名|
 |address|text|null: false|保管場所|
-|boat_image|text||船の画像|
+|image|text||船の画像|
 |created_at|datetime|
 |updated_at|datetime|
 
@@ -324,6 +332,11 @@
 
 - has_many  :lessons_boats
 > lessons_boatsを複数所有する
+
+#### Validation
+
+- validates  :name,        presence: true
+- validates  :address,     presence: true
 
 <br>
 <br>

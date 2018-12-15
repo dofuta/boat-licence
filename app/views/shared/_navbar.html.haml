@@ -11,10 +11,8 @@
     .Navbar__MainGroup2
       =link_to "カレンダー", calendar_path(Date.today, 0), class:"Navbar__MainGroup2Calendar"
     .Navbar__MainGroup3
-      .Navbar__MainGroup3LessonSyokyuu
-        初級
-      .Navbar__MainGroup3LessonJoukyuu
-        上級
+      =link_to "講習　登録",  new_lesson_path, class:"Navbar__MainGroup3NewLesson"
+      =link_to "講習　検索",  search_lessons_path, class:"Navbar__MainGroup3LessonSearch"
       .Navbar__MainGroup3LessonJitugi
         実技
       .Navbar__MainGroup3LessonTokusyu

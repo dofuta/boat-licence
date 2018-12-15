@@ -13,8 +13,13 @@ Rails.application.routes.draw do
     end
   end
   resources :places,   only: [:index, :create, :edit, :update, :destroy]
-  resources :lessons,  only: [:index,:show]
+  resources :lessons,  only: [:index, :edit, :new, :create, :update] do
+    collection do
+       get :search
+    end
+  end
   resources :exams,    only: [:index]
+  resources :boats,    only: [:index, :new, :create, :edit, :update, :destroy]
 
   # calendars_controller
   get 'calendar/:current_date/:next_or_prev/', to: 'calendars#index', as: 'calendar'

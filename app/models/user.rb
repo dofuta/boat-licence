@@ -19,4 +19,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   enum gender_type: {男:0, 女:1}
+  
+  # validation
+  validates  :name,      presence: true
+  validates  :email,     presence: true
 end

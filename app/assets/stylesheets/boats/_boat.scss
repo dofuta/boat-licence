@@ -1,0 +1,71 @@
+.Boat{
+  float: left;
+  margin: 20px auto;
+  padding: 0 30px;
+  width: 200px;
+  // 中身の要素縦方向中央寄せ
+  display: flex;
+  // 中身の要素横方向中央寄せ
+  justify-content: center;
+  input{
+  }
+  textarea{
+    @extend %field_base;
+    width: 186px;
+    font-size: 14px;
+  }
+  label{
+    @extend %label_base;
+    text-align: center;
+  }
+  &__Top{
+    height: 60px;
+    width: 200px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-left: 0px;
+    background-color: $gray1;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+  }
+  &__Image{
+    height: 200px;
+    width: 200px;
+    background-color: $gray3;
+  }
+  &__Name{
+    padding: 10px 0;
+    input{
+      @extend %field_base;
+      width: 186px;
+    }
+  }
+  &__Address{
+    input{
+      @extend %field_base;
+      width: 186px;
+    }
+  }
+  &__Submit{
+    input{
+      @extend %field_base;
+      height: 60px;
+      width: 200px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      margin-left: 0px;
+      background-color: $lightblue1;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      // 中身の要素縦方向中央寄せ
+      display: flex;
+      align-items: center;
+      // 中身の要素横方向中央寄せ
+      justify-content: center;
+      border: none;
+    }
+  }
+}

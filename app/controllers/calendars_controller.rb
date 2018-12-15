@@ -50,19 +50,19 @@ class CalendarsController < ApplicationController
       # 講習の情報をまとめる
       lessons = jitugi + syokyuu + joukyuu + tokusyu + kosen
       # boatを１つのリストにまとめる
-      boats = []
+      boat_icons = []
       lessons.each do |lesson|
         if lesson.boats
-          boats += lesson.boats
+          boat_icons += lesson.boats
         end
       end
-      boats = boats.uniq
+      boat_icons = boat_icons.uniq
       day = {date:      date,
             holiday:    holiday,
             sun_or_sat: sun_or_sat,
             today?:     date == @today ? "today" : nil,
             day_detail: day_detail,
-            boats:      boats.empty? ? nil : boats,
+            boat_icons: boat_icons.empty? ? nil : boat_icons,
             jitugi:     jitugi,
             syokyuu:    syokyuu,
             joukyuu:    joukyuu,

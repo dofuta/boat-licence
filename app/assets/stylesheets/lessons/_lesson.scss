@@ -7,6 +7,8 @@
   cursor: pointer;
   label{
     @extend %label_base;
+    font-size: 18px;
+    color: $gray3;
     cursor: pointer;
   }
   font-size: 24px;
@@ -14,6 +16,38 @@
   text-decoration: none;
   border-bottom: solid 2px $gray2;
   border-radius: 3px;
+  background-color: white;
+  input{
+    border-radius: 15px;
+    border: none;
+    padding: 3px;
+    width: 170px;
+    outline: none;
+    font-size: 18px;
+    color: $gray4;
+  }
+  select{
+    border-radius: 15px;
+    border: none;
+    padding: 3px;
+    outline: none;
+    height: 40px;
+    width: 170px;
+    font-size: 18px;
+    color: $gray4;
+    background-color: white;
+  }
+  textarea{
+    border-radius: 15px;
+    border: none;
+    padding: 3px;
+    outline: none;
+    width: 170px;
+
+    font-size: 18px;
+    color: $gray4;
+    background-color: white;
+  }
   &--withoutlink{
     // aタグがない場合のクラス名（ひどい書き方なのであとで直す）
     margin: 10px auto;
@@ -45,6 +79,14 @@
       padding: 10px;
       width: 200px;
     }
+    &Boat{
+      float: left;
+      padding: 10px;
+      width: 200px;
+      select{
+        height: 80px;
+      }
+    }
   }
   &__Group2{
     float: left;
@@ -69,11 +111,42 @@
       float: left;
       padding: 10px;
       width: 200px;
+      select{
+        height: 80px;
+      }
     }
     &Remark{
       float: left;
       padding: 10px;
       width: 200px;
+      textarea{
+        height: 100px;
+      }
+    }
+  }
+  &__Group4{
+    float: left;
+    overflow: auto;
+    width: 660px;
+    &Submit{
+      input{
+        height: 60px;
+        width: 660px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-left: 0px;
+        background-color: $lightblue1;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        // 中身の要素縦方向中央寄せ
+        display: flex;
+        align-items: center;
+        // 中身の要素横方向中央寄せ
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+      }
     }
   }
 }
