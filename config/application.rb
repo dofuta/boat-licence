@@ -12,7 +12,8 @@ module BoatLicence
     config.load_defaults 5.2
     # apply config/locales/devise.ja.yml for devise
     config.i18n.default_locale = :ja
-
+    # 日本語化ファイルのパスを通す
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

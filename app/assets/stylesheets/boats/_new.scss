@@ -1,0 +1,12 @@
+p.NewBoatMessage{
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+.NewBoatContent{
+  overflow: auto;
+  // 中身の要素縦方向中央寄せ
+  display: flex;
+  // 中身の要素横方向中央寄せ
+  justify-content: center;
+}

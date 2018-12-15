@@ -46,6 +46,8 @@ gem 'rails-i18n'
 gem 'jquery-rails'
 gem 'selenium-webdriver'
 gem 'holiday_jp'
+# 画像の保存
+gem 'carrierwave', "~> 1.2"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

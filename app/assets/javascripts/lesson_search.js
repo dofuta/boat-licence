@@ -3,9 +3,10 @@ $(document).on('turbolinks:load', function() {
   var search_list = $('.Search__List#search');
   // 各ユーザー表示のhtml作成の関数
   function appendLesson(lesson){
-    var remark  = (lesson.remark) ? lesson.remark : "";
+    var remark   = (lesson.remark) ? lesson.remark : "";
     var teachers = (lesson.teachers) ? lesson.teachers : "";
-    var html = `<a class="Lesson" href="/lessons/${lesson.id}">
+    var boats    = (lesson.boats) ? lesson.boats : ""
+    var html = `<a class="Lesson" href="/lessons/${lesson.id}/edit">
                   <div class="Lesson__Group1">
                     <div class="Lesson__Group1Type">
                       <label>種類</label>
@@ -14,6 +15,10 @@ $(document).on('turbolinks:load', function() {
                     <div class="Lesson__Group1Date">
                       <label>講習日</label>
                       ${lesson.date}
+                    </div>
+                    <div class="Lesson__Group1Boat">
+                      <label>船</label>
+                      ${boats}
                     </div>
                   </div>
                   <div class="Lesson__Group2">

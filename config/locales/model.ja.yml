@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      boat: 船艇
+      place: 会場
+      lesson: 講習
+      exam: 試験
+    attributes:
+      user:
+        name: 名前
+        email: Eメール
+      boat:
+        name: 名称
+        address: 保管場所
+      place:
+        address: 住所
+      lesson:
+        place: 会場
+        type_number: 種類
+        date: 日付
+      exam:
+        date: 日付

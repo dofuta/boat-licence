@@ -12,5 +12,8 @@ json.lessons @lessons do |lesson|
   json.teachers lesson.teachers.map{|teacher| teacher.name}.join(", ")
 
   json.ignore_nil!
+  json.boats lesson.boats.map{|boat| boat.name}.join(", ")
+
+  json.ignore_nil!
   json.remark   lesson.remark
 end

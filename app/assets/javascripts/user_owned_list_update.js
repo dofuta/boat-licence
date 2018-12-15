@@ -1,17 +1,4 @@
 $(document).on("ajax:success", function(e) {
-  // Flashメッセージの表示
-  function buildFlash(flashmessage,type){
-    // flashmessageを削除
-    $('.FlashMessage').empty();
-    // flashmessageを作成
-      var flashmessage = `<p class='FlashMessage__${type}'>
-                            ${flashmessage}
-                          <p>`
-      // flashmessageを挿入
-      $('.FlashMessage').prepend(flashmessage)
-  };
-  buildFlash("データを更新しました！","notice")
-
   // user_owned_exam, user_owned_leson, user_infoのどのformを変更したのかを判断するための変数群
   var exam_id = e.detail[0].exam_id
   var lesson_id = e.detail[0].lesson_id
@@ -38,18 +25,4 @@ $(document).on("ajax:success", function(e) {
     // 更新ボタンを削除する
     $('.UserInfo__Group3__Info2Submit').remove();
   }
-});
-$(document).on("ajax:error", "#user-update-form", function(e) {
-  // Flashメッセージの表示
-  function buildFlash(flashmessage,type){
-    // flashmessageを削除
-    $('.FlashMessage').empty();
-    // flashmessageを作成
-      var flashmessage = `<p class='FlashMessage__${type}'>
-                            ${flashmessage}
-                          <p>`
-      // flashmessageを挿入
-      $('.FlashMessage').prepend(flashmessage)
-  };
-  buildFlash("データを更新できませんでした！","alert")
 });

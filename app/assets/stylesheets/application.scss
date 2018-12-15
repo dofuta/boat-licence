@@ -18,6 +18,12 @@
 @import "./places/form";
 @import "./places/place";
 
+// boats_controller
+// boats/boat
+@import "./boats/boat";
+// boats/new
+@import "./boats/new";
+
 // lessons_controller
 @import "./lessons/index";
 @import "./lessons/lesson";
@@ -34,7 +40,7 @@
 
 // calendars_controller
 @import "./calendars/index";
-@import "./calendars/boat";
+@import "./calendars/boat_icon";
 
 // day_details_controller
 @import "./day_details/day";
