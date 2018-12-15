@@ -1,0 +1,14 @@
+ja:
+  errors:
+    messages:
+      carrierwave_processing_error: ": アップロードに失敗しました。"
+      carrierwave_integrity_error: ": ファイルの形式に問題があります。"
+      carrierwave_download_error: "ダウンロードに失敗しました。"
+      extension_whitelist_error: ": この形式のファイルはアップロードできません。.jpg, .jpeg, .png, .pdf が利用可能です。"
+      extension_blacklist_error: ": この形式のファイルはアップロードできません。.jpg, .jpeg, .png, .pdf が利用可能です。"
+      content_type_whitelist_error: ": この形式のファイルはアップロードできません。.jpg, .jpeg, .png, .pdf が利用可能です。"
+      content_type_blacklist_error: ": この形式のファイルはアップロードできません。.jpg, .jpeg, .png, .pdf が利用可能です。"
+      rmagick_processing_error: "Failed to manipulate with rmagick, maybe it is not an image?"
+      mini_magick_processing_error: "MiniMagickによる画像の変換に失敗しました。このファイルは画像になっていますか？ Original Error: %{e}"
+      min_size_error: "ファイルサイズは %{min_size} よりも大きくしてください。"
+      max_size_error: "ファイルサイズは %{max_size} よりも小さくしてください。"

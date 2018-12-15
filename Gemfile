@@ -48,7 +48,7 @@ gem 'selenium-webdriver'
 gem 'holiday_jp'
 # 画像の保存
 gem 'carrierwave', "~> 1.2"
-
+gem 'mini_magick', "~> 4.9"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

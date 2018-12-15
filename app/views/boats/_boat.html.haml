@@ -3,7 +3,7 @@
     .Boat__Top
       =f.file_field :image
     .Boat__Image
-      =image_tag(boat.image.url) if boat.image
+      =image_tag(boat.image.url) unless boat.image.file.nil?
     .Boat__Name
       =f.label :船の名称
       =f.text_field :name
