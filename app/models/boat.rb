@@ -4,4 +4,7 @@ class Boat < ApplicationRecord
 
   validates  :name,        presence: true
   validates  :address,     presence: true
+
+  #carrierwaveの設定, imageカラムにboatimageuploaderからアップロードする。
+  mount_uploader :image, BoatImageUploader
 end
